@@ -1,0 +1,55 @@
+
+<html>
+
+<head>
+<style>
+table, th, td {
+    border: 5px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+table#t01 {
+    width: 100%;    
+    background-color: #f1f1c1;
+}
+</style>
+</head>
+
+
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Songs</h1>
+
+<table id="t01" border=2 style="width:100%">
+
+
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Mood</th>
+      <th>Artist</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @songs.each do |song| %>
+      <tr>
+        <td><%= song.name %></td>
+        <td><%= song.mood.moodname %></td>
+        <td><%= song.artist.artistname %></td>
+<td><a href='<%= song.audio.url %>'>Play</a> </td>
+        <td><%= link_to 'Show', song %></td>
+        <td><%= link_to 'Edit', edit_song_path(song) %></td>
+        <td><%= link_to 'Destroy', song, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Song', new_song_path %>

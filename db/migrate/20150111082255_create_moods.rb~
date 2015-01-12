@@ -1,0 +1,10 @@
+class CreateMoods < ActiveRecord::Migration
+  def change
+   create_table :moods do |t|
+       t.references :song, index: true
+      t.string :moodname
+
+      t.timestamps null: false
+    end
+  end
+end

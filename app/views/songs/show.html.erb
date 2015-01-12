@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @song.name %>
+</p>
+
+<p>
+  <strong>Mood:</strong>
+  <%= @song.mood.moodname %>
+</p>
+
+<p>
+  <strong>Artist:</strong>
+  <%= @song.artist.artistname %>
+</p>
+<%= @song.audio_file_name %>
+<a href='<%= @song.audio.url %>'>Song</a>|
+
+<%= link_to 'Edit', edit_song_path(@song) %> |
+<%= link_to 'Back', songs_path %>
