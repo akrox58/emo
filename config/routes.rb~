@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
 resources :songs do
   collection do
-    get 'listofsong'
+    get 'songs_listofsong_path'
   end
 end
 

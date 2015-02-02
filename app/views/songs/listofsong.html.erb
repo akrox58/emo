@@ -28,25 +28,20 @@ table#t01 {
 
   <thead>
     <tr>
-      <th>Song Id </th>
       <th>Name</th>
       <th>Mood</th>
       <th>Artist</th>
-      <th colspan="4"></th>
+      <th colspan="1"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @songs.each do |song| %>
       <tr>
-	<td><%= song.id %></td>
         <td><%= song.name %></td>
         <td><%= song.mood.moodname %></td>
         <td><%= song.artist.artistname %></td>
 <td><a href='<%= song.audio.url %>'>Play</a> </td>
-        <td><%= link_to 'Show', song %></td>
-        <td><%= link_to 'Edit', edit_song_path(song) %></td>
-        <td><%= link_to 'Destroy', song, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -54,4 +49,3 @@ table#t01 {
 
 <br>
 
-<%= link_to 'New Song', new_song_path %>

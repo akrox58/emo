@@ -20,6 +20,11 @@ class SongsController < ApplicationController
   def edit
   end
 
+def listofsong
+@songs = Song.all
+    respond_with(@songs)
+  end
+
   def create
     @song = Song.new(song_params)
     @song.save
