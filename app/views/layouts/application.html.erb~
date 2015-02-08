@@ -90,7 +90,8 @@
 
 	<div class="col-sm-5 col-xs-12 col-sm-offset-1">
 	<div class="player">
-	<img src="/assets/dj,png" class="graphics hidden-xs  animated fadeInRightBig" alt="dj"/>
+                <%=image_tag(('dj.png') , :class => "graphics hidden-xs  animated fadeInRightBig") %>
+	
 		<iframe width="100%" height="170" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/66392700&amp;color=f2ab00&amp;theme_color=000000&amp;auto_play=true&amp;hide_related=true&amp;show_artwork=false"></iframe>
 		</div>
 	</div>
@@ -109,7 +110,8 @@
 <h3><span class="glyphicon glyphicon-user"></span> About Me</h3>
 <div class="row">				
 <div class="col-lg-4 col-sm-4  col-xs-12">
-<img src="assets/images/4.jpg" class="img-responsive" alt="about"/>
+<%=image_tag(('4.jpg') , :class => "img-responsive") %>
+
 </div>
 <div class="col-lg-5 col-sm-8  col-xs-12">
 <p>We serve our clients through a number of services, including effective web design, web application development, print design, online marketing and brand development. We serve our clients through a number of services, including effective webh5 design, web application development, print design, online marketing and brand development.</p>
@@ -142,22 +144,22 @@
 <!-- latest release starts-->
 <div id="album" class="releases spacer">
 <h3><span class="glyphicon glyphicon-music"></span> Album Releases</h3>
-<div class="row">
-	<div class="col-sm-3 col-xs-12"><div class="album"><img src="assets/images/3.jpg" class="img-responsive" alt="music theme" /><div class="albumdetail"><h5>Crazy Freso</h5><a href="#" class="listen" data-toggle="modal" data-target="#albumdetail"><span class="glyphicon glyphicon-headphones"></span> Listen Song</a></div></div></div>
+<div class="row">                                          
+	<div class="col-sm-3 col-xs-12"><div class="album"><%=image_tag(('3.jpg') , :class => "img-responsive", :alt=>"music theme") %><div class="albumdetail"><h5>Crazy Freso</h5><a href="#" class="listen" data-toggle="modal" data-target="#albumdetail"><span class="glyphicon glyphicon-headphones"></span> Listen Song</a></div></div></div>
 
-	<div class="col-sm-3 col-xs-12"><div class="album"><img src="assets/images/1.jpg" class="img-responsive" alt="music theme" /><div class="albumdetail"><h5>Crazy Freso</h5><a href="#" class="listen" data-toggle="modal" data-target="#albumdetail"><span class="glyphicon glyphicon-headphones"></span> Listen Song</a></div></div></div>
+	<div class="col-sm-3 col-xs-12"><div class="album"><%=image_tag(('1.jpg') , :class => "img-responsive", :alt=>"music theme") %><div class="albumdetail"><h5>Crazy Freso</h5><a href="#" class="listen" data-toggle="modal" data-target="#albumdetail"><span class="glyphicon glyphicon-headphones"></span> Listen Song</a></div></div></div>
 
-	<div class="col-sm-3 col-xs-12"><div class="album"><img src="assets/images/2.jpg" class="img-responsive" alt="music theme" /><div class="albumdetail"><h5>Crazy Freso</h5><a href="#" class="listen" data-toggle="modal" data-target="#albumdetail"><span class="glyphicon glyphicon-headphones"></span> Listen Song</a></div></div></div>
+	<div class="col-sm-3 col-xs-12"><div class="album"><%=image_tag(('2.jpg') , :class => "img-responsive", :alt=>"music theme") %><div class="albumdetail"><h5>Crazy Freso</h5><a href="#" class="listen" data-toggle="modal" data-target="#albumdetail"><span class="glyphicon glyphicon-headphones"></span> Listen Song</a></div></div></div>
 
-	<div class="col-sm-3 col-xs-12"><div class="album"><img src="assets/images/4.jpg" class="img-responsive" alt="music theme" /><div class="albumdetail"><h5>Crazy Freso</h5><a href="#" class="listen" data-toggle="modal" data-target="#albumdetail"><span class="glyphicon glyphicon-headphones"></span> Listen Song</a></div></div></div>
+	<div class="col-sm-3 col-xs-12"><div class="album"><%=image_tag(('4.jpg') , :class => "img-responsive", :alt=>"music theme") %><div class="albumdetail"><h5>Crazy Freso</h5><a href="#" class="listen" data-toggle="modal" data-target="#albumdetail"><span class="glyphicon glyphicon-headphones"></span> Listen Song</a></div></div></div>
 
-	<div class="col-sm-3 col-xs-12"><div class="album"><img src="assets/images/4.jpg" class="img-responsive" alt="music theme" /><div class="albumdetail"><h5>Crazy Freso</h5><a href="#" class="listen" data-toggle="modal" data-target="#albumdetail"><span class="glyphicon glyphicon-headphones"></span> Listen Song</a></div></div></div>
+	<div class="col-sm-3 col-xs-12"><div class="album"><%=image_tag(('4.jpg') , :class => "img-responsive", :alt=>"music theme") %><div class="albumdetail"><h5>Crazy Freso</h5><a href="#" class="listen" data-toggle="modal" data-target="#albumdetail"><span class="glyphicon glyphicon-headphones"></span> Listen Song</a></div></div></div>
 
-	<div class="col-sm-3 col-xs-12"><div class="album"><img src="assets/images/2.jpg" class="img-responsive" alt="music theme" /><div class="albumdetail"><h5>Crazy Freso</h5><a href="#" class="listen" data-toggle="modal" data-target="#albumdetail"><span class="glyphicon glyphicon-headphones"></span> Listen Song</a></div></div></div>
+	<div class="col-sm-3 col-xs-12"><div class="album"><%=image_tag(('2.jpg') , :class => "img-responsive", :alt=>"music theme") %><div class="albumdetail"><h5>Crazy Freso</h5><a href="#" class="listen" data-toggle="modal" data-target="#albumdetail"><span class="glyphicon glyphicon-headphones"></span> Listen Song</a></div></div></div>
 
-	<div class="col-sm-3 col-xs-12"><div class="album"><img src="assets/images/3.jpg" class="img-responsive" alt="music theme" /><div class="albumdetail"><h5>Crazy Freso</h5><a href="#" class="listen" data-toggle="modal" data-target="#albumdetail"><span class="glyphicon glyphicon-headphones"></span> Listen Song</a></div></div></div>
+	<div class="col-sm-3 col-xs-12"><div class="album"><%=image_tag(('3.jpg') , :class => "img-responsive", :alt=>"music theme") %><div class="albumdetail"><h5>Crazy Freso</h5><a href="#" class="listen" data-toggle="modal" data-target="#albumdetail"><span class="glyphicon glyphicon-headphones"></span> Listen Song</a></div></div></div>
 
-	<div class="col-sm-3 col-xs-12"><div class="album"><img src="assets/images/1.jpg" class="img-responsive" alt="music theme" /><div class="albumdetail"><h5>Crazy Freso</h5><a href="#" class="listen" data-toggle="modal" data-target="#albumdetail"><span class="glyphicon glyphicon-headphones"></span> Listen Song</a></div></div></div>
+	<div class="col-sm-3 col-xs-12"><div class="album"><%=image_tag(('1.jpg') , :class => "img-responsive", :alt=>"music theme") %><div class="albumdetail"><h5>Crazy Freso</h5><a href="#" class="listen" data-toggle="modal" data-target="#albumdetail"><span class="glyphicon glyphicon-headphones"></span> Listen Song</a></div></div></div>
 </div>
 </div>
 <!-- latest release ends-->
@@ -182,28 +184,28 @@
 		<ul>
 			<li>
 			<div class="row">
-				<div class="col-xs-12 col-sm-3 col-lg-4"><a href="#" data-toggle="modal" data-target="#blogdetail"><img src="assets/images/1.jpg" class="img-responsive" alt="music theme" /></a></div>
+				<div class="col-xs-12 col-sm-3 col-lg-4"><a href="#" data-toggle="modal" data-target="#blogdetail"><%=image_tag(('1.jpg') , :class => "img-responsive", :alt=>"music theme") %></a></div>
 				<div class="col-xs-12  col-sm-6 col-lg-5 "><h5><a href="#" data-toggle="modal" data-target="#blogdetail">Christmas Eve Party</a></h5><p>Typewriter photo booth vinyl post-ironic, literally keffiyeh locavore tofu lomo pug Odd Future.</p></div>
 				<div class="col-xs-12  col-sm-3 col-lg-3 date"><b>2014</b><span>Dec 28</span></div>
 			</div>
 			</li>
 			<li>
 			<div class="row">
-				<div class="col-xs-12 col-sm-3 col-lg-4"><a href="#" data-toggle="modal" data-target="#blogdetail"><img src="assets/images/2.jpg" class="img-responsive" alt="music theme" /></a></div>
+				<div class="col-xs-12 col-sm-3 col-lg-4"><a href="#" data-toggle="modal" data-target="#blogdetail"><%=image_tag(('2.jpg') , :class => "img-responsive", :alt=>"music theme") %></a></div>
 				<div class="col-xs-12  col-sm-6 col-lg-5 "><h5><a href="#" data-toggle="modal" data-target="#blogdetail">Christmas Eve Party</a></h5><p>Typewriter photo booth vinyl post-ironic, literally keffiyeh locavore tofu lomo pug Odd Future.</p></div>
 				<div class="col-xs-12  col-sm-3 col-lg-3 date"><b>2014</b><span>Dec 28</span></div>
 			</div>
 			</li>
 			<li>
 			<div class="row">
-				<div class="col-xs-12 col-sm-3 col-lg-4"><a href="#" data-toggle="modal" data-target="#blogdetail"><img src="assets/images/3.jpg" class="img-responsive" alt="music theme" /></a></div>
+				<div class="col-xs-12 col-sm-3 col-lg-4"><a href="#" data-toggle="modal" data-target="#blogdetail"><%=image_tag(('3.jpg') , :class => "img-responsive", :alt=>"music theme") %></a></div>
 				<div class="col-xs-12  col-sm-6 col-lg-5 "><h5><a href="#" data-toggle="modal" data-target="#blogdetail">Christmas Eve Party</a></h5><p>Typewriter photo booth vinyl post-ironic, literally keffiyeh locavore tofu lomo pug Odd Future.</p></div>
 				<div class="col-xs-12  col-sm-3 col-lg-3 date"><b>2014</b><span>Dec 28</span></div>
 			</div>
 			</li>
 			<li>
 			<div class="row">
-				<div class="col-xs-12 col-sm-3 col-lg-4"><a href="#" data-toggle="modal" data-target="#blogdetail"><img src="assets/images/4.jpg" class="img-responsive" alt="music theme" /></a></div>
+				<div class="col-xs-12 col-sm-3 col-lg-4"><a href="#" data-toggle="modal" data-target="#blogdetail"><%=image_tag(('4.jpg') , :class => "img-responsive", :alt=>"music theme") %></a></div>
 				<div class="col-xs-12  col-sm-6 col-lg-5 "><h5><a href="#" data-toggle="modal" data-target="#blogdetail">Christmas Eve Party</a></h5><p>Typewriter photo booth vinyl post-ironic, literally keffiyeh locavore tofu lomo pug Odd Future.</p></div>
 				<div class="col-xs-12  col-sm-3 col-lg-3 date"><b>2014</b><span>Dec 28</span></div>
 			</div>
@@ -218,25 +220,25 @@
 		<div class="ourblog">
 		<h3><span class="glyphicon glyphicon-book"></span> Blog</h3>
             <ul class="row">
-              <li class="row"><a href="#" data-toggle="modal" data-target="#blogdetail" class="col-xs-12 col-sm-3 col-lg-4"><img src="assets/images/3.jpg" class="img-responsive" alt="music theme" /></a>
+              <li class="row"><a href="#" data-toggle="modal" data-target="#blogdetail" class="col-xs-12 col-sm-3 col-lg-4"><%=image_tag(('3.jpg') , :class => "img-responsive", :alt=>"music theme") %></a>
               <div class="blogtext col-xs-12 col-sm-9  col-lg-8"><h5><a href="#" data-toggle="modal" data-target="#blogdetail">New trends in music</a></h5>
               <small>Posted on: Jan 1, 2014</small>
               <p>Typewriter photo booth vinyl post-ironic, literally keffiyeh locavore tofu lomo pug Odd Future. </p>
               </div>              
               </li>
-              <li class="row"><a href="#" data-toggle="modal" data-target="#blogdetail" class="col-xs-12 col-sm-3 col-lg-4"><img src="assets/images/4.jpg" class="img-responsive" alt="music theme" /></a>
+              <li class="row"><a href="#" data-toggle="modal" data-target="#blogdetail" class="col-xs-12 col-sm-3 col-lg-4"><%=image_tag(('4.jpg') , :class => "img-responsive", :alt=>"music theme") %></a>
               <div class="blogtext col-xs-12 col-sm-9  col-lg-8"><h5><a href="#" data-toggle="modal" data-target="#blogdetail">New trends in music</a></h5>
               <small>Posted on: Jan 1, 2014</small>
               <p>Typewriter photo booth vinyl post-ironic, literally keffiyeh locavore tofu lomo pug Odd Future. </p>
               </div>              
               </li>
-              <li class="row"><a href="#" data-toggle="modal" data-target="#blogdetail" class="col-xs-12 col-sm-3 col-lg-4"><img src="assets/images/1.jpg" class="img-responsive" alt="music theme" /></a>
+              <li class="row"><a href="#" data-toggle="modal" data-target="#blogdetail" class="col-xs-12 col-sm-3 col-lg-4"><%=image_tag(('1.jpg') , :class => "img-responsive", :alt=>"music theme") %></a>
               <div class="blogtext col-xs-12 col-sm-9  col-lg-8"><h5><a href="#" data-toggle="modal" data-target="#blogdetail">New trends in music</a></h5>
               <small>Posted on: Jan 1, 2014</small>
               <p>Typewriter photo booth vinyl post-ironic, literally keffiyeh locavore tofu lomo pug Odd Future. </p>
               </div>              
               </li>
-               <li class="row"><a href="#" data-toggle="modal" data-target="#blogdetail" class="col-xs-12 col-sm-3 col-lg-4"><img src="assets/images/2.jpg" class="img-responsive" alt="music theme" /></a>
+               <li class="row"><a href="#" data-toggle="modal" data-target="#blogdetail" class="col-xs-12 col-sm-3 col-lg-4"><%=image_tag(('2.jpg') , :class => "img-responsive", :alt=>"music theme") %></a>
               <div class="blogtext col-xs-12 col-sm-9  col-lg-8"><h5><a href="#" data-toggle="modal" data-target="#blogdetail">New trends in music</a></h5>
               <small>Posted on: Jan 1, 2014</small>
               <p>Typewriter photo booth vinyl post-ironic, literally keffiyeh locavore tofu lomo pug Odd Future. </p>
@@ -300,9 +302,9 @@ Copyright 2014 DJ KRANKS.
 <!-- background slider -->
 <div id="myCarousel" class="carousel slide hidden-xs">
 <div class="carousel-inner">
-    <div class="active item"><img src="assets/images/back1.jpg" alt="" /></div>
-    <div class="item"><img src="assets/images/back2.jpg" alt="" /></div>
-    <div class="item"><img src="assets/images/back3.jpg" alt="" /></div>
+    <div class="active item"><%=image_tag(('back1.jpg') %></div>
+    <div class="item"><%=image_tag(('back2.jpg') %></div>
+    <div class="item"><%=image_tag(('back3.jpg') %></div>
   </div>
 </div>
 <!-- background slider -->
@@ -323,7 +325,7 @@ Copyright 2014 DJ KRANKS.
 <h2>New trends in music</h2>
 <small>Posted on: Jan 20, 2013</small>
       
-      <a href="#" class="thumbnail"><img src="assets/images/1.jpg" class="img-reponsive" alt="blog" /></a>
+      <a href="#" class="thumbnail"><%=image_tag(('1.jpg') , :class => "img-responsive", :alt=>"blog") %></a>
       
       <div class="col-lg-8 col-lg-offset-2">                                                                           
       <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
