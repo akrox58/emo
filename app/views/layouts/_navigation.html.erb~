@@ -24,7 +24,11 @@
             <div class="navbar-collapse  collapse">
               <ul class="nav navbar-nav navbar-right" >
                    <%= render 'layouts/navigation_links' %>
-                  
+                    <li><a href="#about">About</a></li>
+<li><a href="#playlist">Playlist</a></li>
+<li><a href="#album">Albums</a></li>
+<li><a href="#blogevent">Events & Blog</a></li>
+<li><a href="#contact">Contact</a></li> 
               </ul>
             </div>
             <!-- #Nav Ends -->
