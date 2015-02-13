@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :comments
+
   resources :playlists
 
 resources :songs do
@@ -7,7 +9,7 @@ resources :songs do
   end
 end
 
-
+  resources :comments
   resources :moods
 
   resources :playlists
