@@ -1,3 +1,4 @@
+
 <%# navigation styled for Bootstrap 3.0 %>
 <div class="navbar-wrapper ">
       <div class="container">
@@ -7,6 +8,12 @@
             <div class="navbar-header">
               <!-- Logo Starts -->                      
               <a class="navbar-brand" href="#home"><%=image_tag(('logo.png') , :height => "30") %></a>
+
+<div class="navbar navbar-inverse navbar-fixed-top animated fadeInDown" role="navigation" id="top-nav">
+          <div class="container">
+            <div class="navbar-header">
+              <!-- Logo Starts -->
+              <%= link_to "Home",root_path, :class=> "navbar-brand" %>
               <!-- #Logo Ends -->
 
 
@@ -25,6 +32,13 @@
               <ul class="nav navbar-nav navbar-right" >
                    <%= render 'layouts/navigation_links' %>
                    
+
+                  <%= render 'layouts/navigation_links' %>
+                 <!-- <li><a href="#about">About</a></li>
+                 <li><a href="#playlist">Playlist</a></li>
+                 <li><a href="#album">Albums</a></li>
+                 <li><a href="#blogevent">Events & Blog</a></li>
+                 <li><a href="#contact">Contact</a></li> -->
               </ul>
             </div>
             <!-- #Nav Ends -->
@@ -34,3 +48,4 @@
 
       </div>
     </div>
+        </div>
