@@ -28,5 +28,5 @@ group :development do
   gem 'rails_layout'
 gem 'paperclip'
 gem 'cocaine'
-gem 'jplayer-rails'
+
 end
