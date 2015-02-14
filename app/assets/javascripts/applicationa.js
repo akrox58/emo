@@ -15,3 +15,8 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+//= require jquery.jplayer
+//= require jquery-1.6.1.min
+//= require myplaylist
+//= require ttw-music-player
+//= require ttw-music-player-min
