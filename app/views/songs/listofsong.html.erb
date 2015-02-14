@@ -2,7 +2,9 @@
         "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<%= javascript_include_tag 'jquery-1.6.1.min.js','jquery.jplayer.js','ttw-music-player-min.js','myplaylist.js' %>
+
+<%= stylesheet_link_tag 'style.css','demo.css' %>
+<%= javascript_include_tag 'applicationa', 'jquery-1.6.1.min.js','jquery.jplayer.js','ttw-music-player-min.js','myplaylist.js' %>
      <script type="text/javascript">
         $(document).ready(function(){
             var description = 'all songs playlist';
@@ -11,48 +13,19 @@
                 autoPlay:false, 
                 description:description,
                 jPlayer:{
-                    swfPath:'../plugin/jquery-jplayer' //You need to override the default swf path any time the directory structure changes
+                    swfPath:'jquery-jplayer' //You need to override the default swf path any time the directory structure changes
                 }
             });
         });
     </script>
 </head>
 <body>
-
+<div id="jpId"></div>
 <div id="title"></div>
 <a href="http://www.codebasehero.com/download?file=music-player" id="download">Download Here</a>
 </body>
 
-<br><br>
 
-<p id="notice"><%= notice %></p>
-
-<h1>ALL SONGS!</h1>
-
-<table id="t01" border=2 style="width:100%">
-
-
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Mood</th>
-      <th>Artist</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @songs.each do |song| %>
-      <tr>
-        <td><%= song.name %></td>
-        <td><%= song.mood.moodname %></td>
-        <td><%= song.artist.artistname %></td>
-	<td><audio controls="controls" id="player" src="<%=song.audio.url%>"></audio></td>
-     </tr>
-    <% end %>
-  </tbody>
-</table>
-<br><br><br><br>
 
 </html>
 
