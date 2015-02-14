@@ -43,10 +43,10 @@ table#t01 {
         <td><%= song.name %></td>
         <td><%= song.mood.moodname %></td>
         <td><%= song.artist.artistname %></td>
-<td><a href='<%= song.audio.url %>'>Play</a> </td>
         <td><%= link_to 'Show', song %></td>
         <td><%= link_to 'Edit', edit_song_path(song) %></td>
         <td><%= link_to 'Destroy', song, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	<td><audio id="player" src="<%=song.audio.url%>" controls></audio></td>
       </tr>
     <% end %>
   </tbody>
