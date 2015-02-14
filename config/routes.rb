@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 resources :songs do
   collection do
     get 'listofsong'
+    get 'mp3player'
   end
 end
 
