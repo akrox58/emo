@@ -1,0 +1,92 @@
+<!doctype HTML>
+<html>
+<head>
+<%= stylesheet_link_tag 'style.css','demo.css' %>
+<%= javascript_include_tag 'jquery-1.6.1.min.js','jquery.jplayer.js','ttw-music-player-min.js','myplaylist.js' %>
+     <script>
+        $(document).ready(function(){
+            var description = 'all songs playlist';
+
+            $('body').ttwMusicPlayer(myPlaylist, {
+                autoPlay:false, 
+                description:description,
+                jPlayer:{
+                    swfPath:'jquery-jplayer'
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="jpId"></div>
+<div id="title"></div>
+</body>
+</html>
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+<%=link_to 'View Player', mp3player_songs_path %>
+<%= stylesheet_link_tag 'style.css','demo.css' %>
+<%= javascript_include_tag 'jquery-1.6.1.min.js','jquery.jplayer.js','ttw-music-player-min.js','ttw-music-player.js','myplaylist.js' %>
+      <script type="text/javascript">
+        $(document).ready(function(){
+            var description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id tortor nisi. Aenean sodales diam ac lacus elementum scelerisque. Suspendisse a dui vitae lacus faucibus venenatis vel id nisl. Proin orci ante, ultricies nec interdum at, iaculis venenatis nulla. ';
+
+            $('body').ttwMusicPlayer(myPlaylist, {
+                autoPlay:false, 
+                description:description,
+                jPlayer:{
+                    swfPath:'jquery-jplayer'
+                }
+            });
+        });
+    </script>
+</head>
+
+
+
+
+
+
+<%=link_to 'View Player', mp3player_songs_path %>
+
+
+
+<h1>LISTING ALL SONGS!</h1>
+<table id="t01" border=2 style="width:100%">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Mood</th>
+      <th>Artist</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @songs.each do |song| %>
+      <tr>
+        <td><%= song.name %></td>
+        <td><%= song.mood.moodname %></td>
+        <td><%= song.artist.artistname %></td>
+	<td><audio controls="controls" id="player" src="<%=song.audio.url%>"></audio></td>
+     </tr>
+    <% end %>
+  </tbody>
+</table>
+</html>
+
+
+</head>
+
+</html>
+
+
+
+
+

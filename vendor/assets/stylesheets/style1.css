@@ -10,6 +10,7 @@ html{
   height: 100%;
 }
 body {
+  padding-top: 120px;
   position: relative;
   background: #fff;
   font-family: helvetica, arial, sans-serif;

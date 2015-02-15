@@ -16,11 +16,11 @@
 html { overflow-y: scroll; }
 
 body {
-    background: #444 <%= image_url("bg.jpg") %> repeat 0 0 scroll;
+    background: #444 image-url('images/bg.jpg')  repeat 0 0 scroll;
 }
 
 #title{
-    background:transparent <%=image_url("title.png") %> 0 0 scroll;
+    background:transparent image-url('images/title.png')  0 0 scroll;
     position:absolute;
     top:60px;
     left:24px;
