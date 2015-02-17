@@ -9,6 +9,8 @@ class PlaylistsController < ApplicationController
   end
 
   def show
+    @songs = Song.all
+    @playlists =Playlist.find(params[:id])
     respond_with(@playlist)
   end
 

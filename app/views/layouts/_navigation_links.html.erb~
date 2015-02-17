@@ -1,5 +1,5 @@
 <%# add navigation links to this file %>
-songs_
+
    
 
 
@@ -8,7 +8,7 @@ songs_
 <% if user_signed_in? %>
   		<li><%= link_to 'Edit account', edit_user_registration_path %></li>
   		<li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
-  		<li><%= link_to 'Playlist', comments_path  %></li>
+  		<li><%= link_to 'Playlist', playlsts_path  %></li>
   		<li><%= link_to 'Songs', listofsong_songs_path %></li>            
 <% else %>
                  <li><a href="#about">About</a></li>

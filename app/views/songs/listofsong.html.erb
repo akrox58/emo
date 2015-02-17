@@ -30,7 +30,7 @@
 
 
         <ul class="playlist">
-	<% @songs.each do |song| %>
+	<% @songs.where("mood_id=1").find_each do |song|%>
             <li audiourl="<%=song.audio.url%>" cover="cover2.jpg" artist="<%=song.artist.artistname%>" mood="<%=song.mood.moodname%>" ><%=song.name%> </li>
 	  <% end %>        
 	</ul>
