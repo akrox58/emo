@@ -7,7 +7,11 @@
     <%=javascript_include_tag 'id3v2.js' %>
     
 
+
 <script>
+<%=@songs.each do |song| %>
+	localStorage.setItem("file",<%=song.audio.url%>);
+<%=end %>
       function parseFile(file, callback){
         if(localStorage[file.name]) return callback(JSON.parse(localStorage[file.name]));
         ID3v2.parseFile(file,function(tags){
@@ -175,22 +179,7 @@
       }
       
       onload = function(){
-        //with no dependencies, it should be fine to use this instead of ondomcontentloaded
         var a = document.createElement('audio');
-        if(!a.canPlayType) $("support").innerHTML += "Your browser does not support HTML5 Audio<br>";
-        if(!(a.canPlayType && a.canPlayType('audio/ogg; codecs="vorbis"').replace(/no/, ''))) 
-          $("support").innerHTML += "Your browser does not support Ogg Vorbis Playback<br>";
-        if(!(a.canPlayType && a.canPlayType('audio/mpeg;').replace(/no/, ''))) 
-          $("support").innerHTML += "Your browser does not support MP3 Playback<br>";
-        var f = document.createElement('input');
-        f.type = 'file';
-        if(!('multiple' in f)) $("support").innerHTML += "Your browser does not support selecting multiple files<br>";
-        if(!('webkitdirectory' in f)) $("support").innerHTML += "Your browser probably does not support selecting directories<br>";
-        if(window.createObjectURL){}else if(window.createBlobURL){}else if(window.URL && window.URL.createObjectURL){
-        }else if(window.webkitURL && window.webkitURL.createObjectURL){}else{
-          $("support").innerHTML += "Your browser probably does not support Object URLs<br>";
-        }
-        
         document.querySelector('#search input').onkeydown = function(e){
           if(e.keyCode == 13){
             for(var i = document.querySelectorAll('#songtable tr.visible'), l = i.length; l--;){
@@ -199,25 +188,11 @@
           }
         }
       }
-    </script>
+</script>
   </head>
   <body>
     <!-- Start screen popup -->
     <div id="mask"></div>
-    <div id="startup">
-      <div id="prompt">
-      <p style="padding: 15px">
-          Select your folder, search your songs, create a plalist and listen to your tracks!
-        </p>
-          <input type="file" webkitdirectory directory multiple mozdirectory onchange="getSongs(this.files)">
-        <!-- <p style="padding-left: 15px">
-          By <a href="http://twitter.com/antimatter15">@antimatter15</a> &amp; UI built by <a href="http://twitter.com/nicovanzyl">@nicovanzyl</a>
-        </p> -->
-      </div>
-      <div id="support" style="position:absolute;z-index:99999;color:red;font-size:x-large"> <!-- insert cheap knockoff modernizer clone -->
-      
-      </div>
-    </div>
     <!-- player ui -->
     <div id="search">
       <input type="text" placeholder="Search: Song, Artist, Album or Genre" spellcheck=off autocomplete=on oninput="runSearch(this.value)">
