@@ -1,5 +1,53 @@
-<h1>New Comment</h1>
+
+
+<!--<%= link_to 'Back', comments_path %> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+<h1>How Do You Feel Today?</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', comments_path %>
+    <!-- add styles and scripts -->
+	<%=stylesheet_link_tag 'css/styles.css' %>
+	<%=javascript_include_tag 'js/jquery-1.7.2.min.js' ,'js/jquery-ui-1.8.21.custom.min.js','js/man.js' %>
+</head>
+<body>
+    <div class="example">
+
+        <div class="player">
+            <div class="pl"></div>
+            <div class="title"></div>
+            <div class="artist"></div>
+	    <div class="mood"></div>
+            <div class="cover"></div>
+            <div class="controls">
+                <div class="play"></div>
+                <div class="pause"></div>
+                <div class="rew"></div>
+                <div class="fwd"></div>
+            </div>
+            <div class="volume"></div>
+            <div class="tracker"></div>
+        </div>
+
+  
+
+
+        <ul class="playlist">
+	<% @Mood.joins('LEFT OUTER JOIN songs ON songs.mood_id=moods.id).where("mood_id=1").find_each do |song|%>
+            <li audiourl="<%=song.audio.url%>" cover="cover2.jpg" artist="<%=song.artist.artistname%>" mood="<%=song.mood.moodname%>" ><%=song.name%> </li>
+	  <% end %>        
+	</ul>
+
+    </div>
+</body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</html>

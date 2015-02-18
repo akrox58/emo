@@ -21,6 +21,8 @@ class SongsController < ApplicationController
   end
 
 def listofsong
+@songs = Song.all
+    respond_with(@songs)
   end
 
   def create

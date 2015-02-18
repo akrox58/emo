@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150218134514) do
+=======
+ActiveRecord::Schema.define(version: 20150215160653) do
+>>>>>>> 042e6a9182dec7ae3b8866b2b62aa679b32e0cec
 
   create_table "artists", force: :cascade do |t|
     t.integer  "song_id"
@@ -28,6 +32,16 @@ ActiveRecord::Schema.define(version: 20150218134514) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "comms", force: :cascade do |t|
+    t.integer  "moods_id"
+    t.string   "comment"
+    t.string   "mood"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "comms", ["moods_id"], name: "index_comms_on_moods_id"
 
   create_table "moods", force: :cascade do |t|
     t.integer  "song_id"

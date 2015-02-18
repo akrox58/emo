@@ -9,6 +9,8 @@ class PlaylistsController < ApplicationController
   end
 
   def show
+   
+   @songs=Song.where(:mood_id=>@playlist.mood)
     respond_with(@playlist)
   end
 

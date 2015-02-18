@@ -1,3 +1,20 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+
+    <!-- add styles and scripts -->
+	<%=stylesheet_link_tag 'css/styles.css' %>
+	<%=javascript_include_tag 'js/jquery-1.7.2.min.js' ,'js/jquery-ui-1.8.21.custom.min.js','js/man.js' %>
+</head>
+<body>
+
+
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -7,13 +24,55 @@
 
 <p>
   <strong>Mood:</strong>
-  <%= @playlist.mood %>
+  <%= @playlist.mood.moodname %>
 </p>
 
 <p>
   <strong>User:</strong>
   <%= @playlist.user %>
 </p>
+    <div class="example">
+
+        <div class="player">
+            <div class="pl"></div>
+            <div class="title"></div>
+            <div class="artist"></div>
+	    <div class="mood"></div>
+            <div class="cover"></div>
+            <div class="controls">
+                <div class="play"></div>
+                <div class="pause"></div>
+                <div class="rew"></div>
+                <div class="fwd"></div>
+            </div>
+            <div class="volume"></div>
+            <div class="tracker"></div>
+        </div>
+
+   
+
+
+        <ul class="playlist">
+  <!--  song.where(:mood_id => playlist.mood_id)  -->
+	  <% @songs.find_each do |song|%>
+            <li audiourl="<%=song.audio.url%>" cover="cover2.jpg" artist="<%=song.artist.artistname%>" mood="<%=song.mood.moodname%>" ><%=song.name%> </li>
+	  <% end %>        
+	</ul>
+
+    </div>
+
+
+
+</body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</html>
+
+
 
 <%= link_to 'Edit', edit_playlist_path(@playlist) %> |
 <%= link_to 'Back', playlists_path %>
