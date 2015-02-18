@@ -24,7 +24,7 @@
 
 <p>
   <strong>Mood:</strong>
-  <%= @playlist.mood %>
+  <%= @playlist.mood.moodname %>
 </p>
 
 <p>
@@ -54,7 +54,7 @@
 
         <ul class="playlist">
   <!--  song.where(:mood_id => playlist.mood_id)  -->
-	  <% @songs.where("mood_id=3").find_each do |song|%>
+	  <% @songs.find_each do |song|%>
             <li audiourl="<%=song.audio.url%>" cover="cover2.jpg" artist="<%=song.artist.artistname%>" mood="<%=song.mood.moodname%>" ><%=song.name%> </li>
 	  <% end %>        
 	</ul>
