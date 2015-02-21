@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20150218134514) do
-=======
-ActiveRecord::Schema.define(version: 20150215160653) do
->>>>>>> 042e6a9182dec7ae3b8866b2b62aa679b32e0cec
+ActiveRecord::Schema.define(version: 20150221125615) do
 
   create_table "artists", force: :cascade do |t|
     t.integer  "song_id"
@@ -33,16 +29,6 @@ ActiveRecord::Schema.define(version: 20150215160653) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "comms", force: :cascade do |t|
-    t.integer  "moods_id"
-    t.string   "comment"
-    t.string   "mood"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "comms", ["moods_id"], name: "index_comms_on_moods_id"
-
   create_table "moods", force: :cascade do |t|
     t.integer  "song_id"
     t.string   "moodname"
@@ -53,14 +39,15 @@ ActiveRecord::Schema.define(version: 20150215160653) do
   add_index "moods", ["song_id"], name: "index_moods_on_song_id"
 
   create_table "playlists", force: :cascade do |t|
-    t.string   "name"
     t.integer  "mood_id"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "song_id"
   end
 
   add_index "playlists", ["mood_id"], name: "index_playlists_on_mood_id"
+  add_index "playlists", ["song_id"], name: "index_playlists_on_song_id"
   add_index "playlists", ["user_id"], name: "index_playlists_on_user_id"
 
   create_table "populars", force: :cascade do |t|
@@ -76,11 +63,13 @@ ActiveRecord::Schema.define(version: 20150215160653) do
     t.integer  "user_id"
     t.integer  "song_id"
     t.integer  "count"
-    t.integer  "moodrate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "search"
+    t.integer  "mood_id"
   end
 
+  add_index "raters", ["mood_id"], name: "index_raters_on_mood_id"
   add_index "raters", ["song_id"], name: "index_raters_on_song_id"
   add_index "raters", ["user_id"], name: "index_raters_on_user_id"
 

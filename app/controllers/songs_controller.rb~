@@ -21,6 +21,13 @@ class SongsController < ApplicationController
   end
 
 def listofsong
+@raters=Rater.all
+@songs = Song.all
+    respond_with(@songs,@raters)
+  end
+
+
+def mp3player
 @songs = Song.all
     respond_with(@songs)
   end

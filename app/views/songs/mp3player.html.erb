@@ -2,16 +2,10 @@
 <html manifest="player.manifest">
   <head>
     <title>MP3 Player</title>
-    
     <%= stylesheet_link_tag 'style1.css' %>
     <%=javascript_include_tag 'id3v2.js' %>
-    
-
-
-<script>
-<%=@songs.each do |song| %>
-	localStorage.setItem("file",<%=song.audio.url%>);
-<%=end %>
+    <script>
+     
       function parseFile(file, callback){
         if(localStorage[file.name]) return callback(JSON.parse(localStorage[file.name]));
         ID3v2.parseFile(file,function(tags){
@@ -21,6 +15,7 @@
             Artist: tags.Artist,
             Album: tags.Album,
             Genre: tags.Genre
+
           });
           callback(tags);
         })
@@ -44,36 +39,29 @@
       }
       
       function $(id){return document.getElementById(id)}
-      function getSongs(files){
-        $("mask").style.display = 'none';
-        $("startup").style.display = 'none';
+      
+	function getSongs()
+
+	{
+//        $("mask").style.display = 'none';
+  //      $("startup").style.display = 'none';
         var queue = [];
         var mp3 = canPlay('audio/mpeg;'), ogg = canPlay('audio/ogg; codecs="vorbis"');
-        for(var i = 0; i < files.length; i++){
-          var file = files[i];
+        var url = elem.attr('audiourl');
+        var title = elem.text();
+	var mood = elem.attr('mood');
+	var songid=elem.attr('songid');
+	song = new Audio(url);
 	  
-	  var path = file.webkitRelativePath || file.mozFullPath || file.name;
-          if (path.indexOf('.AppleDouble') != -1) {
-		// Meta-data folder on Apple file systems, skip
-		continue;
-          }         
-	  var size = file.size || file.fileSize || 4096;
-	  if(size < 4095) { 
-		// Most probably not a real MP3
-		console.log(path);
-		continue;
-	  }
+	  var path = song.name;
  
-          if(file.name.indexOf('mp3') != -1){ //only does mp3 for now
+          if(song.name.indexOf('mp3') != -1)
+	    { //only does mp3 for now
             if(mp3){
               queue.push(file);
             }
           }
-          if(file.name.indexOf('ogg') != -1  || file.name.indexOf('oga') != -1){
-            if(ogg){
-              queue.push(file);
-            }
-          }
+
         }
                                 
         var process = function(){
@@ -188,11 +176,17 @@
           }
         }
       }
-</script>
+    </script>
   </head>
   <body>
-    <!-- Start screen popup -->
-    <div id="mask"></div>
+	
+        <ul class="playlist">
+	<% @songs.each do |song|%>
+            <li audiourl="<%=song.audio.url%>" mood="<%=song.mood.moodname%>" songid="<%=song.id%>"><%=song.name%> </li>
+	  <% end %>        
+	</ul>
+
+
     <!-- player ui -->
     <div id="search">
       <input type="text" placeholder="Search: Song, Artist, Album or Genre" spellcheck=off autocomplete=on oninput="runSearch(this.value)">

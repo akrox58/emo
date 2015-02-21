@@ -1,31 +1,132 @@
-<p id="notice"><%= notice %></p>
+<!DOCTYPE html>
 
-<h1>Listing Playlists</h1>
+<html lang="en">
+<head>
+<!-- add styles and scripts -->
+	<%=stylesheet_link_tag 'css/styles.css' %>
+	<%=stylesheet_link_tag 'me.css' %>
+	<%=javascript_include_tag 'js/jquery-1.7.2.min.js' ,'js/jquery-ui-1.8.21.custom.min.js','js/man.js' %>
+<script>
+function myFunction(id) {
+    if (document.getElementById(id).style.display == "none") {
+    document.getElementById(id).style.display = 'table';
+  }
 
-<table>
+  else {
+    document.getElementById(id).style.display = "none";
+  }
+}
+
+function Yay() {
+    alert("Glad you loved the song.");
+   
+}
+
+function Boo() {
+ alert("This song wont be played again.");  
+}
+
+
+</script>
+    
+</head>
+<body>
+    <div class="example">
+
+        <div class="player">
+            <div class="pl"></div>
+            <div class="title"></div>
+
+	    <div class="mood"></div>
+            <div class="cover"></div>
+            <div class="controls">
+                <div class="play"></div>
+                <div class="pause"></div>
+                <div class="rew"></div>
+                <div class="fwd"></div>
+            </div>
+            <div class="volume"></div>
+            <div class="tracker"></div>
+        </div>
+
+        <ul class="playlist">
+	<% @playlists.each do |pl|%>
+            <li audiourl="<%=pl.song.audio.url%>" mood="<%=pl.mood.moodname%>" songid="<%=pl.song.id%>"><%=pl.song.name%> </li>
+	  <% end %>        
+	</ul>
+
+    </div>
+</body>
+
+<a href="#" onclick="myFunction('t01'); return false;">View/Hide Download Table</a>
+
+<table id="t01" border=2 style="width:100%">
+<h1> DOWNLOAD SONGS! </h1>
+<p> You can right click on the download link to download files, if the file does not get downloaded. </p>
+<br><br>
+
   <thead>
     <tr>
       <th>Name</th>
       <th>Mood</th>
-      <th>User</th>
+      <th>Artist</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <% @playlists.each do |pl| %>
+      <tr>
+        <td><%= pl.song.name %></td>
+        <td><%= pl.mood.moodname %></td>
+        <td><%= pl.song.artist.artistname %> </td>
+	<td><%= link_to 'Download' ,pl.song.audio.url(:original, false) %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br><br><br>
+<a href="#" onclick="myFunction('t02'); return false;">View/Hide Rate Table</a>
+<br><br>
+<h1> RATE SONGS! </h1>
+<p> 1st star => perfect. 2nd star => change mood. 3rd Star => Wrong mood wrong song!</p>
+
+<br><br><br>
+
+<table id="t02" border=2 style="width:100%">
+
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Mood</th>
+      <th>Artist</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
+
     <% @playlists.each do |playlist| %>
+
+<% @rater=Rater.where("song_id=? and user_id=?", pl.song.id,current_user.id).take %>
       <tr>
         <td><%= playlist.name %></td>
-        <td><%= playlist.mood %></td>
-        <td><%= playlist.user %></td>
-        <td><%= link_to 'Show', playlist %></td>
-        <td><%= link_to 'Edit', edit_playlist_path(playlist) %></td>
-        <td><%= link_to 'Destroy', playlist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= playlist.mood.moodname %></td>
+        <td><%= playlist.song.artist.artistname %></td>
+	<td><a class="rating" onclick=Yay()><span>★★★</span></a></td>
+	<td><%= link_to '★★' ,edit_rater_path(@rater)%></td>
+	<td><a class="rating" href="javascript:return true" onclick=Boo()><span>★</span></a> </td>
+
+
       </tr>
+
     <% end %>
   </tbody>
 </table>
+<br><br><br>
 
-<br>
 
-<%= link_to 'New Playlist', new_playlist_path %>
+
+
+</html>

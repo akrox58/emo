@@ -5,7 +5,9 @@ class PlaylistsController < ApplicationController
 
   def index
     @playlists = Playlist.all
-    respond_with(@playlists)
+@raters=Rater.all
+@songs = Song.all
+    respond_with(@playlists,@songs,@raters)
   end
 
   def show

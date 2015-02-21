@@ -15,17 +15,14 @@ jQuery(document).ready(function() {
     var tracker = $('.tracker');
     var volume = $('.volume');
 
-    function initAudio(elem) {
+    function initAudio(elem) 
+	{
         var url = elem.attr('audiourl');
         var title = elem.text();
-	var mood=elem.attr('mood');
-        var cover = elem.attr('cover');
-        var artist = elem.attr('artist');
-
+	var mood = elem.attr('mood');
+	var songid=elem.attr('songid');
         $('.player .title').text(title);
-        $('.player .artist').text(artist);
-	$('player .mood').text(mood);
-        $('.player .cover').css('background-image' , 'image-url(' + cover + ')');
+	$('.player .mood').text(mood);
 
         song = new Audio(url);
 
@@ -37,15 +34,35 @@ jQuery(document).ready(function() {
 
         $('.playlist li').removeClass('active');
         elem.addClass('active');
+	
+
     }
+
+
+
     function playAudio() {
-        song.play();
 
-        tracker.slider("option", "max", song.duration);
+		song.addEventListener('ended', function()
+		 {
+			var next = $('.playlist li.active').next();
+     			   if (next.length == 0) 
+				{
+            				next = $('.playlist li:first-child');
+        			}
+	
+			initAudio(next);
+			stopAudio();
 
-        $('.play').addClass('hidden');
-        $('.pause').addClass('visible');
-    }
+    		}, false);
+
+tracker.slider("option", "max", song.duration);
+		        $('.play').addClass('hidden');
+      			  $('.pause').addClass('visible');
+       			song.play();
+   
+	}
+
+
     function stopAudio() {
         song.pause();
 
@@ -71,7 +88,7 @@ jQuery(document).ready(function() {
     $('.fwd').click(function (e) {
         e.preventDefault();
 
-        stopAudio();
+        stopAudio();	
 
         var next = $('.playlist li.active').next();
         if (next.length == 0) {
@@ -95,8 +112,6 @@ jQuery(document).ready(function() {
 
     // show playlist
     $('.pl').click(function (e) {
-        e.preventDefault();
-
         $('.playlist').fadeIn(300);
     });
 

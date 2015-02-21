@@ -11,7 +11,7 @@ This stylesheet and the associated (x)html may be modified in any way to fit you
 }
 
 body {
- padding-top: 200px; 
+ padding-top: 0px; 
     background-color: #aaa;
 }
 header {
@@ -46,7 +46,7 @@ header a, a:visited {
     width: 326px;
     z-index: 2;
 }
-.title, .artist {
+.title, .mood {
     font-family: verdana;
     left: 167px;
     position: absolute;
@@ -61,11 +61,12 @@ header a, a:visited {
     font-weight: bold;
     top: 23px;
 }
-.artist {
+.mood {
     color: #EEEEEE;
     font-size: 12px;
     top: 40px;
 }
+
 .pl {
     background: transparent image-url('spr.png') no-repeat scroll -274px -175px;
     cursor: pointer;
@@ -78,15 +79,7 @@ header a, a:visited {
 .pl:hover {
     top: 21px;
 }
-.cover {
-    background: transparent image-url('cover1.jpg') no-repeat scroll center top;
-    border-radius: 5px 5px 5px 5px;
-    height: 94px;
-    left: 20px;
-    position: absolute;
-    top: 20px;
-    width: 94px;
-}
+
 .controls {
     cursor: pointer;
     height: 23px;
@@ -167,8 +160,8 @@ header a, a:visited {
     width: 13px;
 }
 .playlist {
-    background-color: #333333;
-    border-radius: 5px 5px 5px 5px;
+    background-color: #555555;
+    border-radius: 10px 10px 10px 10px;
     list-style-type: none;
     margin: -10px 0 0 2px;
     padding-bottom: 10px;

@@ -1,0 +1,11 @@
+<%= simple_form_for(@rater) do |f| %>
+  <%= f.error_notification %>
+  <div class="form-inputs">
+<%= f.association :song, :label_method => :name, :value_method => :id%>
+	<%= f.association :mood , :label_method => :moodname, :value_method => :id %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

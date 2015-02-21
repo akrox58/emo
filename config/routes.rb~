@@ -6,10 +6,14 @@ Rails.application.routes.draw do
 resources :songs do
   collection do
     get 'listofsong'
+    get 'mp3player'
   end
+member do
+get 'songs/audio_download/:id' => "songs#audio_download", :as => "download"
+end
 end
 
-
+  resources :comments
   resources :moods
 
   resources :playlists
