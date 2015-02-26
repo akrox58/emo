@@ -46,6 +46,6 @@ class PlaylistsController < ApplicationController
     end
 
     def playlist_params
-      params.require(:playlist).permit(:name, :mood_id, :user_id)
+      params.require(:playlist).permit(:mood_id, :user_id, :name)
     end
 end

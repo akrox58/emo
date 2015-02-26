@@ -2,6 +2,7 @@
 
 <html lang="en">
 <head>
+
 <!-- add styles and scripts -->
 	<%=stylesheet_link_tag 'css/styles.css' %>
 	<%=stylesheet_link_tag 'me.css' %>
@@ -81,6 +82,9 @@ function Boo() {
         <td><%= pl.song.name %></td>
         <td><%= pl.mood.moodname %></td>
         <td><%= pl.song.artist.artistname %> </td>
+	<td><%= link_to 'Show', playlist %></td>
+        <td><%= link_to 'Edit', edit_playlist_path(playlist) %></td>
+        <td><%= link_to 'Destroy', playlist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 	<td><%= link_to 'Download' ,pl.song.audio.url(:original, false) %> </td>
       </tr>
     <% end %>
@@ -126,7 +130,7 @@ function Boo() {
 </table>
 <br><br><br>
 
-
+<%= link_to 'New Playlist', new_playlist_path %>
 
 
 </html>
