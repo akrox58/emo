@@ -59,7 +59,8 @@ function Boo() {
 
         <ul class="playlist">
 	<% @songs.each do |song|%>
-            <li audiourl="<%=song.audio.url%>" mood="<%=song.mood.moodname%>" songid="<%=song.id%>"><%=song.name%> </li>
+<% @rater=Rater.where("song_id=? and user_id=?", song.id,current_user.id).take %>
+            <li audiourl="<%=song.audio.url%>" mood="<%=@rater.mood.moodname%>" songid="<%=song.id%>"><%=song.name%> </li>
 	  <% end %>        
 	</ul>
 
@@ -85,9 +86,10 @@ function Boo() {
   <tbody>
 
     <% @songs.each do |song| %>
+<% @rater=Rater.where("song_id=? and user_id=?", song.id,current_user.id).take %>
       <tr>
         <td><%= song.name %></td>
-        <td><%= song.mood.moodname %></td>
+        <td><%= @rater.mood.moodname %></td>
         <td><%= song.artist.artistname %></td>
 	<td><%= link_to 'Download' ,song.audio.url(:original, false) %> </td>
       </tr>
@@ -120,7 +122,7 @@ function Boo() {
 <% @rater=Rater.where("song_id=? and user_id=?", song.id,current_user.id).take %>
       <tr>
         <td><%= song.name %></td>
-        <td><%= song.mood.moodname %></td>
+        <td><%= @rater.mood.moodname %></td>
         <td><%= song.artist.artistname %></td>
 	<td><a class="rating" onclick=Yay()><span>★★★</span></a></td>
 	<td><%= link_to '★★' ,edit_rater_path(@rater)%></td>

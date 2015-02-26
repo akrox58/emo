@@ -54,6 +54,9 @@ function Boo() {
 	<% @playlists.each do |pl|%>
             <li audiourl="<%=pl.song.audio.url%>" mood="<%=pl.mood.moodname%>" songid="<%=pl.song.id%>"><%=pl.song.name%> </li>
 	  <% end %>        
+
+
+
 	</ul>
 
     </div>
