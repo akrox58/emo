@@ -3,8 +3,8 @@
 
   <div class="form-inputs">
     <%= f.input :name %>
-    <%= f.association :mood , :label_method => :moodname , :value_method => :id %>
-    <%= f.association :artist, :label_method => :artistname , :value_method => :id %>
+    <%= f.association :mood %>
+    <%= f.association :artist %>
     <%= f.file_field :audio %>
   </div>
 

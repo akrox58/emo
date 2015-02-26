@@ -78,10 +78,9 @@ function Boo() {
   <tbody>
 
     <% @playlists.each do |pl| %>
-<% @rater=Rater.where("song_id=? and user_id=?", pl.song.id,current_user.id).take %>
       <tr>
         <td><%= pl.song.name %></td>
-        <td><%= @rater.mood.moodname %></td>
+        <td><%= pl.mood.moodname %></td>
         <td><%= pl.song.artist.artistname %> </td>
 	<td><%= link_to 'Show', playlist %></td>
         <td><%= link_to 'Edit', edit_playlist_path(playlist) %></td>
@@ -114,10 +113,10 @@ function Boo() {
 
     <% @playlists.each do |playlist| %>
 
-<% @rater=Rater.where("song_id=? and user_id=?", playlist.song.id,current_user.id).take %>
+<% @rater=Rater.where("song_id=? and user_id=?", pl.song.id,current_user.id).take %>
       <tr>
-        <td><%= playlist.song.name %></td>
-        <td><%= @rater.mood.moodname %></td>
+        <td><%= playlist.name %></td>
+        <td><%= playlist.mood.moodname %></td>
         <td><%= playlist.song.artist.artistname %></td>
 	<td><a class="rating" onclick=Yay()><span>★★★</span></a></td>
 	<td><%= link_to '★★' ,edit_rater_path(@rater)%></td>
