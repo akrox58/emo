@@ -1,17 +1,13 @@
-<!DOCTYPE html>
+
+ <!DOCTYPE html>
 
 <html lang="en">
 <head>
-<!-- add styles and scripts  -->
+
+<!-- add styles and scripts -->
 	<%=stylesheet_link_tag 'css/styles.css' %>
 	<%=stylesheet_link_tag 'me.css' %>
 	<%=javascript_include_tag 'js/jquery-1.7.2.min.js' ,'js/jquery-ui-1.8.21.custom.min.js','js/man.js' %>
-
-<% @songs.each do |song| %>
-<% Rater.create(song_id: song.id , user_id: current_user.id, count: 0, mood_id: song.mood_id, search: 0) %>
-<% end %>
-<p> Click here to download the MP3 Player for Offline Purposes! :) </p>
-<a href="<%= image_path("OfflinePurpleBlues.zip")%>" download>Offline Purple Blues</a>
 <script>
 function myFunction(id) {
     if (document.getElementById(id).style.display == "none") {
@@ -27,7 +23,6 @@ function Yay() {
     alert("Glad you loved the song.");
    
 }
-
 
 function Boo() {
  alert("This song wont be played again.");  
@@ -57,10 +52,12 @@ function Boo() {
         </div>
 
         <ul class="playlist">
-	<% @songs.each do |song|%>
-<% @rater=Rater.where("song_id=? and user_id=?", song.id,current_user.id).take %>
-            <li audiourl="<%=song.audio.url%>" mood="<%=@rater.mood.moodname%>" songid="<%=song.id%>"><%=song.name%> </li>
+	<% @playlists.each do |pl|%>
+            <li audiourl="<%=pl.song.audio.url%>" mood="<%=pl.mood.moodname%>" songid="<%=pl.song.id%>"><%=pl.song.name%> </li>
 	  <% end %>        
+
+
+
 	</ul>
 
     </div>
@@ -70,7 +67,7 @@ function Boo() {
 
 <table id="t01" border=2 style="width:100%">
 <h1> DOWNLOAD SONGS! </h1>
-<p> Click Control+S on the audio player page, if the file does not get downloaded. </p>
+<p> You can right click on the download link to download files, if the file does not get downloaded. </p>
 <br><br>
 
   <thead>
@@ -84,18 +81,20 @@ function Boo() {
 
   <tbody>
 
-    <% @songs.each do |song| %>
-<% @rater=Rater.where("song_id=? and user_id=?", song.id,current_user.id).take %>
+    <% @playlists.each do |pl| %>
       <tr>
-        <td><%= song.name %></td>
-        <td><%= @rater.mood.moodname %></td>
-        <td><%= song.artist.artistname %></td>
-        <td><a href="<%=song.audio.url(:original, false)%>" download>Download</a></td>
-	
+        <td><%= pl.song.name %></td>
+        <td><%= pl.mood.moodname %></td>
+        <td><%= pl.song.artist.artistname %> </td>
+	<td><%= link_to 'Show', playlist %></td>
+        <td><%= link_to 'Edit', edit_playlist_path(playlist) %></td>
+        <td><%= link_to 'Destroy', playlist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	<td><%= link_to 'Download' ,pl.song.audio.url(:original, false) %> </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<br><br><br>
 <a href="#" onclick="myFunction('t02'); return false;">View/Hide Rate Table</a>
 <br><br>
 <h1> RATE SONGS! </h1>
@@ -116,13 +115,13 @@ function Boo() {
 
   <tbody>
 
-    <% @songs.each do |song| %>
+    <% @playlists.each do |playlist| %>
 
-<% @rater=Rater.where("song_id=? and user_id=?", song.id,current_user.id).take %>
+<% @rater=Rater.where("song_id=? and user_id=?", pl.song.id,current_user.id).take %>
       <tr>
-        <td><%= song.name %></td>
-        <td><%= @rater.mood.moodname %></td>
-        <td><%= song.artist.artistname %></td>
+        <td><%= playlist.name %></td>
+        <td><%= playlist.mood.moodname %></td>
+        <td><%= playlist.song.artist.artistname %></td>
 	<td><a class="rating" onclick=Yay()><span>★★★</span></a></td>
 	<td><%= link_to '★★' ,edit_rater_path(@rater)%></td>
 	<td><a class="rating" href="javascript:return true" onclick=Boo()><span>★</span></a> </td>
@@ -134,5 +133,8 @@ function Boo() {
   </tbody>
 </table>
 <br><br><br>
+
+<%= link_to 'New Playlist', new_playlist_path %>
+
 
 </html>

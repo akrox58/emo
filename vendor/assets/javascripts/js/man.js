@@ -14,17 +14,22 @@ jQuery(document).ready(function() {
     var song;
     var tracker = $('.tracker');
     var volume = $('.volume');
-
+ var url;
+var title;
+var mood;
+var songid;
     function initAudio(elem) 
 	{
-        var url = elem.attr('audiourl');
-        var title = elem.text();
-	var mood = elem.attr('mood');
-	var songid=elem.attr('songid');
+         url = elem.attr('audiourl');
+         title = elem.text();
+	 mood = elem.attr('mood');
+	 songid=elem.attr('songid');
         $('.player .title').text(title);
 	$('.player .mood').text(mood);
 
         song = new Audio(url);
+
+
 
         // timeupdate event listener
         song.addEventListener('timeupdate',function (){
@@ -38,7 +43,14 @@ jQuery(document).ready(function() {
 
     }
 
-
+    function Callme()
+	{
+		
+		
+	
+		
+	}
+		
 
     function playAudio() {
 
@@ -49,16 +61,23 @@ jQuery(document).ready(function() {
 				{
             				next = $('.playlist li:first-child');
         			}
-	
 			initAudio(next);
-			stopAudio();
+    			
+		song.addEventListener('loadedmetadata', function() {
+    				playAudio();
 
-    		}, false);
+				});
+    		},false);
 
-tracker.slider("option", "max", song.duration);
+	
+    		
+		
+		tracker.slider("option", "max", song.duration);
+	song.play();
 		        $('.play').addClass('hidden');
       			  $('.pause').addClass('visible');
-       			song.play();
+
+       			
    
 	}
 
@@ -119,20 +138,24 @@ tracker.slider("option", "max", song.duration);
     $('.playlist li').click(function () {
         stopAudio();
         initAudio($(this));
+	song.addEventListener('loadedmetadata', function() {
+    				playAudio();
+
+				});
     });
 
     // initialization - first element in playlist
     initAudio($('.playlist li:first-child'));
 
     // set volume
-    song.volume = 0.8;
+    song.volume = 0.5;
 
     // initialize the volume slider
     volume.slider({
         range: 'min',
         min: 1,
         max: 100,
-        value: 80,
+        value: 50,
         start: function(event,ui) {},
         slide: function(event, ui) {
             song.volume = ui.value / 100;

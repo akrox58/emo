@@ -2,7 +2,7 @@
 
 <p>
   <strong>Name:</strong>
-  <%= @rater.song.id %>
+  <%= @rater.song.name %>
 </p>
 
 <p>
@@ -12,7 +12,7 @@
 
 <p>
   <strong>Mood:</strong>
-  <%= @rater.mood_id %>
+  <%= @rater.mood.moodname %>
 </p>
 
 <%= link_to 'Edit', edit_rater_path(@rater) %> |

@@ -47,8 +47,8 @@ header a, a:visited {
     z-index: 2;
 }
 .title, .mood {
-    font-family: verdana;
-    left: 167px;
+    font-family:"Times New Roman", Times, serif;
+    left: 155px;
     position: absolute;
 
     -moz-user-select: none;
@@ -57,13 +57,13 @@ header a, a:visited {
 }
 .title {
     color: #FFFFFF;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
     top: 23px;
 }
 .mood {
     color: #EEEEEE;
-    font-size: 12px;
+    font-size: 10px;
     top: 40px;
 }
 

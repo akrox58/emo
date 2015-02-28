@@ -9,7 +9,7 @@
 <table>
  <thead>
     <tr>
-	<td>Song Name </th>
+	<td>Song Name </th>	
 	<th>Mood</th>
 	<th> Times Listened To: </th>
 	<th> Times Searched For: </th>
@@ -18,9 +18,11 @@
   </thead>
 
   <tbody>
-     <% @raters.each do |rater| %>
+<%@rater=Rater.where(user_id: current_user.id); %>
+     <% @rater.each do |rater| %>
       <tr>
-        <td><%= rater.song.name %></td>
+
+       <td><%= rater.song.name %></td>
         <td><%= rater.mood.moodname %></td>
         <td><%= rater.count %></td>
 	<td><%= rater.search %></td> 

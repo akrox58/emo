@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>ID:</strong>
+  <%= @song.id %>
+</p>
+
+<p>
   <strong>Name:</strong>
   <%= @song.name %>
 </p>
@@ -18,4 +23,4 @@
 <a href='<%= @song.audio.url %>'>Song</a>|
 
 <%= link_to 'Edit', edit_song_path(@song) %> |
-<%= link_to 'Back', songs_path %>
+<%= link_to 'Back', songs_path %> |  <%= link_to 'New Song', new_song_path %>
