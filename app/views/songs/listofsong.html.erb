@@ -5,7 +5,8 @@
 <!-- add styles and scripts  -->
 	<%=stylesheet_link_tag 'css/styles.css' %>
 	<%=stylesheet_link_tag 'me.css' %>
-	<%=javascript_include_tag 'js/jquery-1.7.2.min.js' ,'js/jquery-ui-1.8.21.custom.min.js','js/man.js' %>
+	<%=javascript_include_tag 'js/jquery-1.7.2.min.js' ,'js/jquery-ui-1.8.21.custom.min.js','js/man' %>
+	<%=javascript_include_tag 'sorttable.js'%>
 
 <% @songs.each do |song| %>
 <% Rater.create(song_id: song.id , user_id: current_user.id, count: 0, mood_id: song.mood_id, search: 0) %>
@@ -66,11 +67,14 @@ function Boo() {
     </div>
 </body>
 
-<a href="#" onclick="myFunction('t01'); return false;">View/Hide Download Table</a>
+<a href="#" onclick="myFunction('t01'); return false;">Click here to rate/download</a>
 
-<table id="t01" border=2 style="width:100%">
+<table id="t01" class="sortable" border=2 style="width:100%">
 <h1> DOWNLOAD SONGS! </h1>
 <p> Click Control+S on the audio player page, if the file does not get downloaded. </p>
+<h1> RATE SONGS! </h1>
+<p> 1st star => perfect. 2nd star => change mood. 3rd Star => Wrong mood wrong song!</p>
+
 <br><br>
 
   <thead>
@@ -91,48 +95,14 @@ function Boo() {
         <td><%= @rater.mood.moodname %></td>
         <td><%= song.artist.artistname %></td>
         <td><a href="<%=song.audio.url(:original, false)%>" download>Download</a></td>
+	<td><a class="rating" onclick=Yay()><span>★</span></a>
+	<%= link_to '★' ,edit_rater_path(@rater)%>
+	<a class="rating" href="javascript:return true" onclick=Boo()><span>★</span></a> </td>
 	
       </tr>
     <% end %>
   </tbody>
 </table>
-<a href="#" onclick="myFunction('t02'); return false;">View/Hide Rate Table</a>
 <br><br>
-<h1> RATE SONGS! </h1>
-<p> 1st star => perfect. 2nd star => change mood. 3rd Star => Wrong mood wrong song!</p>
-
-<br><br><br>
-
-<table id="t02" border=2 style="width:100%">
-
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Mood</th>
-      <th>Artist</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-
-    <% @songs.each do |song| %>
-
-<% @rater=Rater.where("song_id=? and user_id=?", song.id,current_user.id).take %>
-      <tr>
-        <td><%= song.name %></td>
-        <td><%= @rater.mood.moodname %></td>
-        <td><%= song.artist.artistname %></td>
-	<td><a class="rating" onclick=Yay()><span>★★★</span></a></td>
-	<td><%= link_to '★★' ,edit_rater_path(@rater)%></td>
-	<td><a class="rating" href="javascript:return true" onclick=Boo()><span>★</span></a> </td>
-
-
-      </tr>
-
-    <% end %>
-  </tbody>
-</table>
-<br><br><br>
 
 </html>
