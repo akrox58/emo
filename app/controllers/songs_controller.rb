@@ -20,6 +20,16 @@ class SongsController < ApplicationController
   def edit
   end
 
+	def listening
+	@rater=Rater.find(params[:id])
+	@rater.count=@rater.count+1
+	@rater.save
+		respond_to do |format|
+      		format.js
+	end 
+	end
+
+
 def listofsong
 @raters=Rater.all
 @songs = Song.all

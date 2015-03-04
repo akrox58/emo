@@ -4,10 +4,13 @@ Rails.application.routes.draw do
   resources :playlists
 
 resources :songs do
+ 
   collection do
     get 'listofsong'
-    get 'mp3player'
+	get "/listening/:id" => "songs#listening"
   end
+   
+
 
 end
 

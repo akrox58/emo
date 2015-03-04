@@ -42,12 +42,15 @@ var songid;
 	
 
     }
+function alertme()
+{
+	alert('/listening/'+ songid);
+}
 
     function Callme()
 	{
-		
-		
-	
+
+	$.ajax('/songs/listening/'+songid,{type: 'GET'});
 		
 	}
 		
@@ -62,18 +65,20 @@ var songid;
             				next = $('.playlist li:first-child');
         			}
 			initAudio(next);
-    			
+    		
 		song.addEventListener('loadedmetadata', function() {
+				
     				playAudio();
+	
 
 				});
     		},false);
 
 	
     		
-		
+		Callme();
 		tracker.slider("option", "max", song.duration);
-	song.play();
+			song.play();
 		        $('.play').addClass('hidden');
       			  $('.pause').addClass('visible');
 
@@ -126,7 +131,8 @@ var songid;
             prev = $('.playlist li:last-child');
         }
         initAudio(prev);
-    });
+
+	 });
 
     // show playlist
     $('.pl').click(function (e) {
@@ -137,6 +143,7 @@ var songid;
     $('.playlist li').click(function () {
         stopAudio();
         initAudio($(this));
+	Callme();
 	song.addEventListener('loadedmetadata', function() {
     				playAudio();
 

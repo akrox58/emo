@@ -4,15 +4,22 @@
 <head>
 <!-- add styles and scripts  -->
 	<%=stylesheet_link_tag 'css/styles.css' %>
+	<%=stylesheet_link_tag 'stars.css' %>
 	<%=stylesheet_link_tag 'me.css' %>
-	<%=javascript_include_tag 'js/jquery-1.7.2.min.js' ,'js/jquery-ui-1.8.21.custom.min.js','js/man' %>
+	<%=javascript_include_tag 'js/jquery-1.7.2.min.js' ,'js/jquery-ui-1.8.21.custom.min.js','js/man.js' %>
 	<%=javascript_include_tag 'sorttable.js'%>
+	
 
 <% @songs.each do |song| %>
 <% Rater.create(song_id: song.id , user_id: current_user.id, count: 0, mood_id: song.mood_id, search: 0) %>
 <% end %>
+
 <p> Click here to download the MP3 Player for Offline Purposes! :) </p>
 <a href="<%= image_path("OfflinePurpleBlues.zip")%>" download>Offline Purple Blues</a>
+<br><br><br>
+
+<%= link_to '★' ,raters_path%>
+
 <script>
 function myFunction(id) {
     if (document.getElementById(id).style.display == "none") {
@@ -24,21 +31,14 @@ function myFunction(id) {
   }
 }
 
-function Yay() {
-    alert("Glad you loved the song.");
-   
-}
-
-
-function Boo() {
- alert("This song wont be played again.");  
-}
 
 
 </script>
     
 </head>
 <body>
+
+
     <div class="example">
 
         <div class="player">
@@ -60,7 +60,7 @@ function Boo() {
         <ul class="playlist">
 	<% @songs.each do |song|%>
 <% @rater=Rater.where("song_id=? and user_id=?", song.id,current_user.id).take %>
-            <li audiourl="<%=song.audio.url%>" mood="<%=@rater.mood.moodname%>" songid="<%=song.id%>"><%=song.name%> </li>
+            <li audiourl="<%=song.audio.url%>" mood="<%=@rater.mood.moodname%>" songid="<%=@rater.id%>"><%=song.name%> </li>
 	  <% end %>        
 	</ul>
 
@@ -95,14 +95,51 @@ function Boo() {
         <td><%= @rater.mood.moodname %></td>
         <td><%= song.artist.artistname %></td>
         <td><a href="<%=song.audio.url(:original, false)%>" download>Download</a></td>
-	<td><a class="rating" onclick=Yay()><span>★</span></a>
-	<%= link_to '★' ,edit_rater_path(@rater)%>
-	<a class="rating" href="javascript:return true" onclick=Boo()><span>★</span></a> </td>
-	
+<td><span class="rating">
+        <input type="radio" class="rating-input"
+    id="rating-input-1-5" name="rating-input-1"/>
+        <label for="rating-input-1-5" class="rating-star"></label>
+        <input type="radio" class="rating-input"
+                id="rating-input-1-4" name="rating-input-1"/>
+        <label for="rating-input-1-4" class="rating-star"></label>
+        <input type="radio" class="rating-input"
+                id="rating-input-1-3" name="rating-input-1"/>
+        <label for="rating-input-1-3" class="rating-star"></label>
+        <input type="radio" class="rating-input"
+                id="rating-input-1-2" name="rating-input-1"/>
+        <label for="rating-input-1-2" class="rating-star"></label>
+        <input type="radio" class="rating-input"
+                id="rating-input-1-1" name="rating-input-1"/>
+        <label for="rating-input-1-1" class="rating-star"></label>
+</span></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <br><br>
+
+<span class="rating">
+        <input type="radio" class="rating-input"
+    id="rating-input-1-5" name="rating-input-1"/>
+        <label for="rating-input-1-5" class="rating-star"></label>
+        <input type="radio" class="rating-input"
+                id="rating-input-1-4" name="rating-input-1"/>
+        <label for="rating-input-1-4" class="rating-star"></label>
+        <input type="radio" class="rating-input"
+                id="rating-input-1-3" name="rating-input-1"/>
+        <label for="rating-input-1-3" class="rating-star"></label>
+        <input type="radio" class="rating-input"
+                id="rating-input-1-2" name="rating-input-1"/>
+        <label for="rating-input-1-2" class="rating-star"></label>
+        <input type="radio" class="rating-input"
+                id="rating-input-1-1" name="rating-input-1"/>
+        <label for="rating-input-1-1" class="rating-star"></label>
+</span>
+
+
+
+
+
+
 
 </html>
