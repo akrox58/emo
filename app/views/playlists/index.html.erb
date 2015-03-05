@@ -22,8 +22,8 @@
     <% @playlist.each do |playlist| %>
       <tr>
         <td><%= playlist.name %></td>
-        <td><%= playlist.mood.id %></td>
-        <td><%= playlist.user.id %></td>
+        <td><%= playlist.mood.moodname if playlist.mood%></td>
+        <td><%= playlist.user.name if playlist.user%></td>
         <td><%= link_to 'Show', playlist %></td>
         <td><%= link_to 'Edit', edit_playlist_path(playlist) %></td>
         <td><%= link_to 'Destroy', playlist, method: :delete, data: { confirm: 'Are you sure?' } %></td>

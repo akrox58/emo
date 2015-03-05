@@ -48,13 +48,23 @@ class PlaylistsController < ApplicationController
     end
 
     def playlist_params
-<<<<<<< HEAD
-#get code here,put finish.txt,testemo.py into folder
+statement = params[:playlist][:name]
+    	
+	`python testemo.py #{statement}`
+
+	file = File.open("finish.txt", 'rb')                           #execute python code here and get the value into finish.txt
+	while !file.eof?
+		line = file.readline
+		line=line.gsub(/\n/," ")
+	end
+
+	params = ActionController::Parameters.new({
+playlist: {
+name: statement, 
+mood_id:line,
+user_id: current_user.id
+}
+})
 params.require(:playlist).permit(:name, :mood_id, :user_id)
 	end
 	end
-=======
-      params.require(:playlist).permit(:mood_id, :user_id, :name)
-    end
-end
->>>>>>> 92678991e2b7bd85dba3cf56482541c82b4703ea
