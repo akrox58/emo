@@ -10,8 +10,8 @@
 	<%=javascript_include_tag 'js/jquery-1.7.2.min.js' ,'js/jquery-ui-1.8.21.custom.min.js','js/man.js' %>
 	<%=javascript_include_tag 'sorttable.js'%>
 
-	
-
+	<br><br><br><br><br>
+<h3> SEARCH SONGS BASED ON MOOD </h3>
 <form action="/search">
 	<select class="form-control" name="mood">
 		<% @moods.each do |m| %>
@@ -21,23 +21,16 @@
 	<input type="submit" class="btn btn-primary">
 </form>
 
-
+<br><br><br>
 <p> Click here to download the MP3 Player for Offline Purposes! :) </p>
 <a href="<%= image_path("OfflinePurpleBlues.zip")%>" download>Offline Purple Blues</a>
-<br><br><br>
-
 <%= link_to '★' ,raters_path%>
-
+<br><br><br><br><br>
 <script>
 function myFunction(id) {
-
     var lTable = document.getElementById(id);
     lTable.style.display = (lTable.style.display == "table") ? "none" : "table";
-
 }
-
-
-  
 
 function Rateme(number)
 {
@@ -86,7 +79,7 @@ $.ajax('/raters/uppp/'+number,{type: 'GET'});
 
 <a href="#" onclick="myFunction('t01'); return false;">Click here to rate/download</a>
 
-<table class="table table-hover" id="t01" class="sortable" border=2 style="width:100%">
+<table class="table table-hover" id="t01" border=2 style="width:100%">
 <h1> DOWNLOAD SONGS! </h1>
 <p> Click Control+S on the audio player page, if the file does not get downloaded. </p>
 <h1> RATE SONGS! </h1>
@@ -129,14 +122,6 @@ $.ajax('/raters/uppp/'+number,{type: 'GET'});
   </tbody>
 </table>
 <br><br>
-
-
-<!-- $('.rating').click(function(){
-	get the id from 'this' 
-$.get(/rate,{id: id},function(){
-//register a route for /rate
-})})
--->
 
 
 </html>
