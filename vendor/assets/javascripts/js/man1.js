@@ -42,16 +42,13 @@ var songid;
 	
 
     }
-function alertme()
-{
-	alert('/listening/'+ songid);
-}
+
 
     function Callme()
 	{
 
-	$.ajax('/songs/listening/'+songid,{type: 'GET'});
-		
+	$.ajax('/songs/listenin/'+songid,{type: 'GET'});
+			
 	}
 		
 

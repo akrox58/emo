@@ -7,7 +7,8 @@ resources :songs do
  
   collection do
     get 'listofsong'
-	get "/listening" => "songs#listening"
+	get "/listening/:id" => "songs#listening"
+get "/listenin/:id" => "songs#listenin"
   end
    
 
@@ -19,12 +20,17 @@ end
 
   resources :playlists
 
-  resources :raters
+  resources :raters do
+collection do
+get "/signup" => "raters#signup"
+get "/up" => "raters#up"
+end
+end
 
   resources :populars
 
   resources :artists
-
+  get "/search" => "songs#search", as: 'search'
 
   mount Upmin::Engine => '/admin'
   root to: 'visitors#index'

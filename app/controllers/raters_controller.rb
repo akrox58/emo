@@ -12,6 +12,27 @@ end
  def show
     respond_with(@rater)
   end
+
+def up
+@rater=Rater.where(song_id: params[:id], :user_id => current_user.id).take
+	if @rater.mood_id == 5		
+	@rater.mood_id= 1
+else
+@rater.mood_id=@rater.mood_id + 1
+end
+	@rater.save
+
+	render :text => 'Done' 
+
+
+end
+
+def signup
+@songs=Song.all
+@songs.each do |song|
+ Rater.create(song_id: song.id , user_id: current_user.id, count: 0, mood_id: song.mood_id, search: 0)
+end
+end
  def update
     @rater.update(rater_params)
     respond_with(@rater)

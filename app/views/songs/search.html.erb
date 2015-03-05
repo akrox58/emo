@@ -2,7 +2,7 @@
 
 <head>
 <%=stylesheet_link_tag 'css/styles.css' %>
-	<%=javascript_include_tag 'js/jquery-1.7.2.min.js' ,'js/jquery-ui-1.8.21.custom.min.js','js/man.js' %>
+	<%=javascript_include_tag 'js/jquery-1.7.2.min.js' ,'js/jquery-ui-1.8.21.custom.min.js','js/man1.js' %>
 <style>
 /*table, th, td {
     border: 5px solid black;
@@ -42,8 +42,8 @@ table#t01 {
 
 
         <ul class="playlist">
-	  <% @songs.each do |song| %>
-            <li audiourl="<%=song.audio.url%>" cover="cover2.jpg" artist="<%=song.artist.artistname%>" mood="<%=song.mood.moodname%>" ><%=song.name%> </li>
+	  <% @raters.each do |ra| %>
+            <li audiourl="<%=ra.song.audio.url%>" artist="<%=ra.song.artist.artistname%>" mood="<%=ra.mood.moodname%>" songid="<%=ra.id%>" ><%=ra.song.name%> </li>
 	  <% end %>        
 	</ul>
 
@@ -52,7 +52,7 @@ table#t01 {
 
 
 <p id="notice"><%= notice %></p>
-
+<%= link_to '★' ,raters_path%>
 <h1>Listing Songs</h1>
 
 <table class="table table-hover" id="t01" border=2 style="width:100%">
@@ -67,16 +67,14 @@ table#t01 {
   </thead>
 
   <tbody>
-    <% @songs.each do |song| %>
+    <% @raters.each do |ra| %>
       <tr>
-        <td><%= song.name %></td>
-        <td><%= song.mood.moodname %></td>
-        <td><%= song.artist.artistname %></td>
+        <td><%= ra.song.name %></td>
+        <td><%= ra.mood.moodname %></td>
+        <td><%= ra.song.artist.artistname %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Song', new_song_path %>
+</html>
