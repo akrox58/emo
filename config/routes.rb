@@ -24,7 +24,7 @@ end
   resources :populars
 
   resources :artists
-
+  get "/search" => "songs#search", as: 'search'
 
   mount Upmin::Engine => '/admin'
   root to: 'visitors#index'
