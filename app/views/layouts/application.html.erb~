@@ -92,9 +92,9 @@
 				<a href="#" class="thumbnail"><%=image_tag(('1.jpg') , :class => "img-responsive", :alt=>"blog") %></a>
 
 				<div class="col-lg-8 col-lg-offset-2">                                                                           
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+					<p>You give the feels, we make the feels ;) </p>
+					<p>Ash, Rosh, and AK present to you, the MUSIC RECOMMENDATION SYSTEM! :D </p>
+					<p>I DON'T KNOW WHAT TO TYPE HERE!!!!!</p>
 				</div>
 
 
