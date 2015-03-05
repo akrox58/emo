@@ -1,6 +1,8 @@
 
 
 <head>
+<%=stylesheet_link_tag 'css/styles.css' %>
+	<%=javascript_include_tag 'js/jquery-1.7.2.min.js' ,'js/jquery-ui-1.8.21.custom.min.js','js/man.js' %>
 <style>
 /*table, th, td {
     border: 5px solid black;
@@ -17,6 +19,37 @@ table#t01 {
 </style>
 </head>
 
+<body>
+ <div class="example">
+
+        <div class="player">
+            <div class="pl"></div>
+            <div class="title"></div>
+            <div class="artist"></div>
+	    <div class="mood"></div>
+            <div class="cover"></div>
+            <div class="controls">
+                <div class="play"></div>
+                <div class="pause"></div>
+                <div class="rew"></div>
+                <div class="fwd"></div>
+            </div>
+            <div class="volume"></div>
+            <div class="tracker"></div>
+        </div>
+
+   
+
+
+        <ul class="playlist">
+	  <% @songs.each do |song| %>
+            <li audiourl="<%=song.audio.url%>" cover="cover2.jpg" artist="<%=song.artist.artistname%>" mood="<%=song.mood.moodname%>" ><%=song.name%> </li>
+	  <% end %>        
+	</ul>
+
+    </div>
+</body>
+
 
 <p id="notice"><%= notice %></p>
 
@@ -27,25 +60,18 @@ table#t01 {
 
   <thead>
     <tr>
-      <th>Song Id </th>
       <th>Name</th>
       <th>Mood</th>
       <th>Artist</th>
-      <th colspan="5"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @songs.each do |song| %>
       <tr>
-	<td><%= song.id %></td>
         <td><%= song.name %></td>
         <td><%= song.mood.moodname %></td>
         <td><%= song.artist.artistname %></td>
-	<td><a href='<%= song.audio.url %>'>Play</a> </td>
-        <td><%= link_to 'Show', song %></td>
-        <td><%= link_to 'Edit', edit_song_path(song) %></td>
-        <td><%= link_to 'Destroy', song, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

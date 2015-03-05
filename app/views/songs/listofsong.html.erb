@@ -108,12 +108,7 @@ function myFunction(id) {
         <td><%= song.artist.artistname %></td>
         <td><a href="<%=song.audio.url(:original, false)%>" download>Download</a></td>
  <td><span class="rating" id="<%= i %>">
-        <input type="radio" class="rating-input"
-    id="rating-input-<%= i%>-5" name="rating-input-<%= i%>"/>
-        <label for="rating-input-<%= i%>-5" class="rating-star"></label>
-        <input type="radio" class="rating-input"
-                id="rating-input-<%= i%>-4" name="rating-input-<%= i%>"/>
-        <label for="rating-input-<%= i%>-4" class="rating-star"></label>
+        
         <input type="radio" class="rating-input"
                 id="rating-input-<%= i%>-3" name="rating-input-<%= i%>"/>
         <label for="rating-input-<%= i%>-3" class="rating-star"></label>
