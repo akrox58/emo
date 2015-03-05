@@ -14,6 +14,21 @@
 });
 
 
+$(document).on("page:change", function() {
+        $('.carousel').carousel({
+            interval: 5000
+        }); 
+        $('.carousel').carousel('cycle');
+    
+   $('#top-nav').onePageNav({
+                 currentClass: 'active',
+                 changeHash: true,
+                 scrollSpeed: 500
+            });
+
+
+});
+
 
   // animation
 $(window).scroll(function() {

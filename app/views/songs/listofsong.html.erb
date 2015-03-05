@@ -6,7 +6,7 @@
 	<%=stylesheet_link_tag 'css/styles.css' %>
 
 	<%=stylesheet_link_tag 'stars.css' %>
-	<%=stylesheet_link_tag 'me.css' %>
+	<%#stylesheet_link_tag 'me.css' %>
 	<%=javascript_include_tag 'js/jquery-1.7.2.min.js' ,'js/jquery-ui-1.8.21.custom.min.js','js/man.js' %>
 	<%=javascript_include_tag 'sorttable.js'%>
 
@@ -15,7 +15,7 @@
 <form action="/search">
 	<select class="form-control" name="mood">
 		<% @moods.each do |m| %>
-		<option value="<%= m.id %>"><%= m.moodname %></option>
+		  <option value="<%= m.id %>"><%= m.moodname.titleize %></option>
 		<% end %>
 	</select>
 	<input type="submit" class="btn btn-primary">
