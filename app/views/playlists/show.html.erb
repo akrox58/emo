@@ -2,13 +2,8 @@
 
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title></title>
-
     <!-- add styles and scripts -->
-<%=stylesheet_link_tag 'css/styles.css' %>
+  <%=stylesheet_link_tag 'css/styles.css' %>
 
 	<%=stylesheet_link_tag 'stars.css' %>
 	<%=stylesheet_link_tag 'me.css' %>
@@ -30,7 +25,6 @@ table#t01 {
 }
 </style>
 
-</head>
 <script>
 function Rateme(number)
 {
@@ -42,24 +36,27 @@ $.ajax('/raters/upp/'+number,{type: 'GET'});
 }
 
 </script>
-<body>
 
 <p id="notice"><%= notice %></p>
+<div class="blockblack1">
+  <p>
+    <strong>Name:</strong>
+    <%= @playlist.name.titleize %>
+  </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @playlist.name %>
-</p>
+  <p>
+    <strong>Mood:</strong>
+    <%= @playlist.mood.moodname.titleize %>
+  </p>
 
-<p>
-  <strong>Mood:</strong>
-  <%= @playlist.mood.moodname %>
-</p>
+  <p>
+    <strong>User:</strong>
+    <%= @playlist.user.email %>
+  </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @playlist.user.email %>
-</p>
+</div>
+<br>
+<div class="blockblack">
     <div class="example">
 
         <div class="player">
@@ -133,5 +130,5 @@ $.ajax('/raters/upp/'+number,{type: 'GET'});
 
 <%= link_to 'Edit', edit_playlist_path(@playlist) %> |
 <%= link_to 'Back', playlists_path %>
+</div>
 
-</html>

@@ -37,11 +37,15 @@
 <br>
 <br>
 <br>
+	
 
+<!-- set a purple bg for all pages except home and sign in sign up pages -->
+
+	<div class="<%= 'blockblack' if !((params[:action]=='index' and params[:controller]=='visitors') or (params[:controller]=='devise/registrations') or (params[:controller]=='devise/sessions') or (params[:controller]=='playlists' and params[:action]=='show')) %>">
 	<!-- home banner starts -->
-	<%= yield %>
+		<%= yield %>
 	<!-- home banner ends -->
-
+	</div>
 
 
 	<!-- blockblack -->
