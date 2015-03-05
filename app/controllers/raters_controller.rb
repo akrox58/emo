@@ -37,7 +37,14 @@ def upp
 
 end
 
+def uppp
+@rater=Rater.where(song_id: params[:id], :user_id => current_user.id).take
+	@rater.play=1
+	@rater.save
+	render :text => 'Done' 
 
+
+end
 
 
 

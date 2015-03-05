@@ -47,7 +47,10 @@ function Rateme1(number)
 {
 $.ajax('/raters/upp/'+number,{type: 'GET'});
 }
-
+function Rateme2(number)
+{
+$.ajax('/raters/uppp/'+number,{type: 'GET'});
+}
 </script>
     
 </head>
@@ -111,7 +114,7 @@ $.ajax('/raters/upp/'+number,{type: 'GET'});
         <td><a href="<%=ra.song.audio.url(:original, false)%>" download>Download</a></td>
  <td><span class="rating" id="<%= i %>">
         
-        <input type="radio" class="rating-input"
+        <input type="radio" onclick="Rateme2(<%=ra.song.id%>)" class="rating-input"
                 id="rating-input-<%= i%>-3" name="rating-input-<%= i%>"/>
         <label for="rating-input-<%= i%>-3" class="rating-star"></label>
         <input type="radio" onclick="Rateme(<%=ra.song.id%>)" class="rating-input"

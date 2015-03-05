@@ -24,6 +24,7 @@ end
 collection do
 get "/signup" => "raters#signup"
 get "/up/:id" => "raters#up"
+get "/upp/:id" => "raters#upp"
 end
 end
 
