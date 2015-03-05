@@ -25,7 +25,7 @@ $.ajax('/raters/uppp/'+number,{type: 'GET'});
 }
 
 </script>
-
+<h1> PLAYLIST DETAILS</h1>
 <p id="notice"><%= notice %></p>
 <div class="blockblack1">
   <p>
@@ -44,10 +44,10 @@ $.ajax('/raters/uppp/'+number,{type: 'GET'});
   </p>
 
 </div>
-<br>
+<br><h1> GENERATED PLAYLIST</h1>
+
 <div class="blockblack">
     <div class="example">
-
         <div class="player">
             <div class="pl"></div>
             <div class="title"></div>
@@ -74,7 +74,8 @@ $.ajax('/raters/uppp/'+number,{type: 'GET'});
 
     </div>
 
-<%= link_to '★' ,raters_path%> <h1>Listing Songs</h1>
+<%= link_to '★' ,raters_path%> 
+<h1>Listing Songs generated in PLAYLIST</h1>
 <table class="table table-hover">
  <thead>
     <tr>

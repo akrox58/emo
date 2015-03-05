@@ -9,8 +9,7 @@
 	<%#stylesheet_link_tag 'me.css' %>
 	<%=javascript_include_tag 'js/jquery-1.7.2.min.js' ,'js/jquery-ui-1.8.21.custom.min.js','js/man.js' %>
 	<%=javascript_include_tag 'sorttable.js'%>
-
-	<br><br><br><br><br>
+	<br><br>
 <h3> SEARCH SONGS BASED ON MOOD </h3>
 <form action="/search">
 	<select class="form-control" name="mood">
@@ -21,7 +20,7 @@
 	<input type="submit" class="btn btn-primary">
 </form>
 
-<br><br><br>
+<br>
 <p> Click here to download the MP3 Player for Offline Purposes! :) </p>
 <a href="<%= image_path("OfflinePurpleBlues.zip")%>" download>Offline Purple Blues</a>
 <%= link_to '★' ,raters_path%>
@@ -48,7 +47,7 @@ $.ajax('/raters/uppp/'+number,{type: 'GET'});
     
 </head>
 <body>
-
+<h3> PLAYING ALL SONGS </h3>
 
     <div class="example">
 
