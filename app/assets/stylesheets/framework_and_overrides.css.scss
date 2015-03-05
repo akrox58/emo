@@ -2,6 +2,12 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
+//make navbar purple
+.navbar-inverse{
+  background:rgb(47, 16, 66) !important;
+}
+
 // make all images responsive by default
 img {
   @extend .img-responsive;

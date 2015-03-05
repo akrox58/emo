@@ -14,13 +14,10 @@
 ActiveRecord::Schema.define(version: 20150305124409) do
 
   create_table "artists", force: :cascade do |t|
-    t.integer  "song_id"
     t.string   "artistname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  add_index "artists", ["song_id"], name: "index_artists_on_song_id"
 
   create_table "comments", force: :cascade do |t|
     t.string   "content"
@@ -30,13 +27,10 @@ ActiveRecord::Schema.define(version: 20150305124409) do
   end
 
   create_table "moods", force: :cascade do |t|
-    t.integer  "song_id"
     t.string   "moodname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  add_index "moods", ["song_id"], name: "index_moods_on_song_id"
 
   create_table "playlists", force: :cascade do |t|
     t.integer  "mood_id"
