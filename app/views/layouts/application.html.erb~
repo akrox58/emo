@@ -6,7 +6,7 @@
 <%= javascript_include_tag 'page.js' %>
 
 <%= csrf_meta_tags %>
-<title>Purple Blues</title>
+<title>Heart Beats</title>
 <meta charset="UTF-8" />
 
 
@@ -96,7 +96,7 @@
 				<div class="col-lg-8 col-lg-offset-2">                                                                           
 					<p>You give the feels, we make the feels ;) </p>
 					<p>Ash, Rosh, and AK present to you, the MUSIC RECOMMENDATION SYSTEM! :D </p>
-					<a href=onclick="Callme()">Click here if you just signed up></a>
+					
 				</div>
 
 
