@@ -1,24 +1,13 @@
 
 
 <head>
-<%=stylesheet_link_tag 'css/styles.css' %>
-<%=stylesheet_link_tag 'stars.css' %>
+
+	<%=stylesheet_link_tag 'css/styles.css' %>
+	<%=stylesheet_link_tag 'stars.css' %>
 	<%=stylesheet_link_tag 'me.css' %>
 	<%=javascript_include_tag 'js/jquery-1.7.2.min.js' ,'js/jquery-ui-1.8.21.custom.min.js','js/man1.js' %>
-<style>
-/*table, th, td {
-    border: 5px solid black;
-    border-collapse: collapse;
-}
-th, td {
-    padding: 5px;
-    text-align: left;
-}
-table#t01 {
-    width: 100%;    
-    background-color: #f1f1c1;
-}*/
-</style>
+	<%=javascript_include_tag 'sorttable.js'%>
+
 </head>
 <script>
 function Rateme(number)
@@ -29,7 +18,6 @@ function Rateme1(number)
 {
 $.ajax('/raters/upp/'+number,{type: 'GET'});
 }
-
 </script>
 <body>
  <div class="example">
@@ -63,18 +51,15 @@ $.ajax('/raters/upp/'+number,{type: 'GET'});
 </body>
 
 
-<p id="notice"><%= notice %></p>
 <%= link_to '★' ,raters_path%>
 <h1>Listing Songs</h1>
-<body>
-
-<table class="table table-hover" id="t01" class="sortable" border=2 style="width:100%">
+<table class="table table-hover">
  <thead>
     <tr>
       <th>Name</th>
       <th>Mood</th>
       <th>Artist</th>
-      <th colspan="1"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -103,6 +88,5 @@ $.ajax('/raters/upp/'+number,{type: 'GET'});
     <% end %>
   </tbody>
 </table>
-</body>
 
 </html>
