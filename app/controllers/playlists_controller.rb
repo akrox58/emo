@@ -4,18 +4,20 @@ class PlaylistsController < ApplicationController
   respond_to :html
 
   def index
+  
     @playlists = Playlist.all
     respond_with(@playlists)
   end
 
   def show
-   
+     
    @songs=Song.where(:mood_id=>@playlist.mood)
     respond_with(@playlist)
   end
 
   def new
     @playlist = Playlist.new
+    
     respond_with(@playlist)
   end
 
@@ -44,6 +46,7 @@ class PlaylistsController < ApplicationController
     end
 
     def playlist_params
-      params.require(:playlist).permit(:name, :mood_id, :user_id)
-    end
-end
+#get code here,put finish.txt,testemo.py into folder
+params.require(:playlist).permit(:name, :mood_id, :user_id)
+	end
+	end
