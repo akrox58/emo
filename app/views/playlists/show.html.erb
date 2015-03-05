@@ -8,9 +8,40 @@
     <title></title>
 
     <!-- add styles and scripts -->
-	<%=stylesheet_link_tag 'css/styles.css' %>
+<%=stylesheet_link_tag 'css/styles.css' %>
+
+	<%=stylesheet_link_tag 'stars.css' %>
+	<%=stylesheet_link_tag 'me.css' %>
 	<%=javascript_include_tag 'js/jquery-1.7.2.min.js' ,'js/jquery-ui-1.8.21.custom.min.js','js/man.js' %>
+	<%=javascript_include_tag 'sorttable.js'%>
+
+<style>
+table, th, td {
+    border: 5px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+table#t01 {
+    width: 100%;    
+    background-color: #f1f1c1;
+}
+</style>
+
 </head>
+<script>
+function Rateme(number)
+{
+$.ajax('/raters/up/'+number,{type: 'GET'});
+}
+function Rateme1(number)
+{
+$.ajax('/raters/upp/'+number,{type: 'GET'});
+}
+
+</script>
 <body>
 
 <p id="notice"><%= notice %></p>
@@ -47,30 +78,60 @@
             <div class="tracker"></div>
         </div>
 
-   
-
-
+ 
         <ul class="playlist">
-  <!--  song.where(:mood_id => playlist.mood_id)  -->
-	  <% @songs.find_each do |song|%>
-            <li audiourl="<%=song.audio.url%>" cover="cover2.jpg" artist="<%=song.artist.artistname%>" mood="<%=song.mood.moodname%>" ><%=song.name%> </li>
+
+	  <% @raters.each do |ra|%>
+            <li audiourl="<%=ra.song.audio.url%>" artist="<%=ra.song.artist.artistname%>" mood="<%=ra.mood.moodname%>" songid="<%=ra.id%>"  ><%=ra.song.name%> </li>
 	  <% end %>        
 	</ul>
 
     </div>
 
+<table class="table table-hover" id="t01" class="sortable" border=2 style="width:100%">
 
 
-</body>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-</html>
+<br><br>
+
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Mood</th>
+      <th>Artist</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+   <% @raters.each_with_index do |ra,i| %>
+
+      <tr>
+        <td><%= ra.song.name %></td>
+        <td><%= ra.mood.moodname %></td>
+        <td><%= ra.song.artist.artistname %></td>
+        <td><a href="<%=ra.song.audio.url(:original, false)%>" download>Download</a></td>
+ <td><span class="rating" id="<%= i %>">
+        
+        <input type="radio" class="rating-input"
+                id="rating-input-<%= i%>-3" name="rating-input-<%= i%>"/>
+        <label for="rating-input-<%= i%>-3" class="rating-star"></label>
+        <input type="radio" onclick="Rateme(<%=ra.song.id%>)" class="rating-input"
+                id="rating-input-<%= i%>-2" name="rating-input-<%= i%>"/>
+        <label for="rating-input-<%= i%>-2" class="rating-star"></label>
+        <input type="radio" onclick="Rateme1(<%=ra.song.id%>)" class="rating-input"
+                id="rating-input-<%= i%>-1" name="rating-input-<%= i%>"/>
+        <label for="rating-input-<%= i%>-1" class="rating-star"></label>
+</span></td> 
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br><br>
 
 
 
 <%= link_to 'Edit', edit_playlist_path(@playlist) %> |
 <%= link_to 'Back', playlists_path %>
+
+</html>

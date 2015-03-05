@@ -8,6 +8,7 @@ resources :songs do
   collection do
     get 'listofsong'
 	get "/listening/:id" => "songs#listening"
+get "/listenin/:id" => "songs#listenin"
   end
    
 
@@ -19,7 +20,13 @@ end
 
   resources :playlists
 
-  resources :raters
+  resources :raters do
+collection do
+get "/signup" => "raters#signup"
+get "/up/:id" => "raters#up"
+get "/upp/:id" => "raters#upp"
+end
+end
 
   resources :populars
 

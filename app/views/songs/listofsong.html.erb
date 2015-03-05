@@ -22,10 +22,6 @@
 </form>
 
 
-<% @songs.each do |song| %>
-<% Rater.create(song_id: song.id , user_id: current_user.id, count: 0, mood_id: song.mood_id, search: 0) %>
-<% end %>
-
 <p> Click here to download the MP3 Player for Offline Purposes! :) </p>
 <a href="<%= image_path("OfflinePurpleBlues.zip")%>" download>Offline Purple Blues</a>
 <br><br><br>
@@ -34,16 +30,23 @@
 
 <script>
 function myFunction(id) {
-    if (document.getElementById(id).style.display == "none") {
-    document.getElementById(id).style.display = 'table';
-  }
 
-  else {
-    document.getElementById(id).style.display = "none";
-  }
+    var lTable = document.getElementById(id);
+    lTable.style.display = (lTable.style.display == "table") ? "none" : "table";
+
 }
 
 
+  
+
+function Rateme(number)
+{
+$.ajax('/raters/up/'+number,{type: 'GET'});
+}
+function Rateme1(number)
+{
+$.ajax('/raters/upp/'+number,{type: 'GET'});
+}
 
 </script>
     
@@ -70,9 +73,8 @@ function myFunction(id) {
         </div>
 
         <ul class="playlist">
-	<% @songs.each do |song|%>
-<% @rater=Rater.where("song_id=? and user_id=?", song.id,current_user.id).take %>
-            <li audiourl="<%=song.audio.url%>" mood="<%=@rater.mood.moodname%>" songid="<%=@rater.id%>"><%=song.name%> </li>
+	 <% @raters.each do |ra| %>
+            <li audiourl="<%=ra.song.audio.url%>" artist="<%=ra.song.artist.artistname%>" mood="<%=ra.mood.moodname%>" songid="<%=ra.id%>" ><%=ra.song.name%> </li>
 	  <% end %>        
 	</ul>
 
@@ -81,7 +83,7 @@ function myFunction(id) {
 
 <a href="#" onclick="myFunction('t01'); return false;">Click here to rate/download</a>
 
-<table id="t01" class="sortable" border=2 style="width:100%">
+<table class="table table-hover" id="t01" class="sortable" border=2 style="width:100%">
 <h1> DOWNLOAD SONGS! </h1>
 <p> Click Control+S on the audio player page, if the file does not get downloaded. </p>
 <h1> RATE SONGS! </h1>
@@ -100,27 +102,22 @@ function myFunction(id) {
 
   <tbody>
 
-    <% @songs.each_with_index do |song,i| %>
-<% @rater=Rater.where("song_id=? and user_id=?", song.id,current_user.id).take %>
+   <% @raters.each_with_index do |ra,i| %>
+
       <tr>
-        <td><%= song.name %></td>
-        <td><%= @rater.mood.moodname %></td>
-        <td><%= song.artist.artistname %></td>
-        <td><a href="<%=song.audio.url(:original, false)%>" download>Download</a></td>
+        <td><%= ra.song.name %></td>
+        <td><%= ra.mood.moodname %></td>
+        <td><%= ra.song.artist.artistname %></td>
+        <td><a href="<%=ra.song.audio.url(:original, false)%>" download>Download</a></td>
  <td><span class="rating" id="<%= i %>">
-        <input type="radio" class="rating-input"
-    id="rating-input-<%= i%>-5" name="rating-input-<%= i%>"/>
-        <label for="rating-input-<%= i%>-5" class="rating-star"></label>
-        <input type="radio" class="rating-input"
-                id="rating-input-<%= i%>-4" name="rating-input-<%= i%>"/>
-        <label for="rating-input-<%= i%>-4" class="rating-star"></label>
+        
         <input type="radio" class="rating-input"
                 id="rating-input-<%= i%>-3" name="rating-input-<%= i%>"/>
         <label for="rating-input-<%= i%>-3" class="rating-star"></label>
-        <input type="radio" class="rating-input"
+        <input type="radio" onclick="Rateme(<%=ra.song.id%>)" class="rating-input"
                 id="rating-input-<%= i%>-2" name="rating-input-<%= i%>"/>
         <label for="rating-input-<%= i%>-2" class="rating-star"></label>
-        <input type="radio" class="rating-input"
+        <input type="radio" onclick="Rateme1(<%=ra.song.id%>)" class="rating-input"
                 id="rating-input-<%= i%>-1" name="rating-input-<%= i%>"/>
         <label for="rating-input-<%= i%>-1" class="rating-star"></label>
 </span></td> 
