@@ -20,6 +20,7 @@ def up
 else
 @rater.mood_id=@rater.mood_id + 1
 end
+	@rater.play=1
 	@rater.save
 
 	render :text => 'Done' 
@@ -27,10 +28,23 @@ end
 
 end
 
+def upp
+@rater=Rater.where(song_id: params[:id], :user_id => current_user.id).take
+	@rater.play=0
+	@rater.save
+	render :text => 'Done' 
+
+
+end
+
+
+
+
+
 def signup
 @songs=Song.all
 @songs.each do |song|
- Rater.create(song_id: song.id , user_id: current_user.id, count: 0, mood_id: song.mood_id, search: 0)
+ Rater.create(song_id: song.id , user_id: current_user.id, count: 0, mood_id: song.mood_id, search: 0, play: 1)
 end
 end
  def update
@@ -45,7 +59,7 @@ def set_rater
     end
 
  def rater_params
-      params.require(:rater).permit(:song_id, :user_id,:count,:mood_id, :search)
+      params.require(:rater).permit(:song_id, :user_id,:count,:mood_id, :search,:play)
     end
 
 end

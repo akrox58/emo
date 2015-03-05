@@ -49,7 +49,7 @@ def listofsong
 
 
   def create
-    @song = Song.new(song_params)data: {q: 'q'}
+    @song = Song.new(song_params)
     @song.save
     respond_with(@song)
   end

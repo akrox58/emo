@@ -43,6 +43,10 @@ function Rateme(number)
 {
 $.ajax('/raters/up/'+number,{type: 'GET'});
 }
+function Rateme1(number)
+{
+$.ajax('/raters/upp/'+number,{type: 'GET'});
+}
 
 </script>
     
@@ -113,7 +117,7 @@ $.ajax('/raters/up/'+number,{type: 'GET'});
         <input type="radio" onclick="Rateme(<%=ra.song.id%>)" class="rating-input"
                 id="rating-input-<%= i%>-2" name="rating-input-<%= i%>"/>
         <label for="rating-input-<%= i%>-2" class="rating-star"></label>
-        <input type="radio" class="rating-input"
+        <input type="radio" onclick="Rateme1(<%=ra.song.id%>)" class="rating-input"
                 id="rating-input-<%= i%>-1" name="rating-input-<%= i%>"/>
         <label for="rating-input-<%= i%>-1" class="rating-star"></label>
 </span></td> 

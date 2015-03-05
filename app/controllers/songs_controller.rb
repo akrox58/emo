@@ -9,7 +9,7 @@ class SongsController < ApplicationController
   end
 
   def search
-@raters=Rater.where(mood_id: params[:mood] , :user_id => current_user.id)
+@raters=Rater.where(mood_id: params[:mood] , :user_id => current_user.id, :play => 1)
 	
   end
 

@@ -13,7 +13,7 @@ class PlaylistsController < ApplicationController
 
   def show
      
-   @raters=Rater.where(:mood_id=>@playlist.mood , :user_id => current_user.id)
+   @raters=Rater.where(:mood_id=>@playlist.mood , :user_id => current_user.id, :play => 1)
     respond_with(@playlist)
   end
 

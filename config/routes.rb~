@@ -23,7 +23,7 @@ end
   resources :raters do
 collection do
 get "/signup" => "raters#signup"
-get "/up" => "raters#up"
+get "/up/:id" => "raters#up"
 end
 end
 
