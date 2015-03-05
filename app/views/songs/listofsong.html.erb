@@ -1,19 +1,62 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <title></title>
-
-    <!-- add styles and scripts -->
+<!-- add styles and scripts  -->
 	<%=stylesheet_link_tag 'css/styles.css' %>
+
+	<%=stylesheet_link_tag 'stars.css' %>
+	<%=stylesheet_link_tag 'me.css' %>
 	<%=javascript_include_tag 'js/jquery-1.7.2.min.js' ,'js/jquery-ui-1.8.21.custom.min.js','js/man.js' %>
+	<%=javascript_include_tag 'sorttable.js'%>
+
+	
+
+<form action="/search">
+	<select class="form-control" name="mood">
+		<% @moods.each do |m| %>
+		<option value="<%= m.id %>"><%= m.moodname %></option>
+		<% end %>
+	</select>
+	<input type="submit" class="btn btn-primary">
+</form>
+
+
+<% @songs.each do |song| %>
+<% Rater.create(song_id: song.id , user_id: current_user.id, count: 0, mood_id: song.mood_id, search: 0) %>
+<% end %>
+
+<p> Click here to download the MP3 Player for Offline Purposes! :) </p>
+<a href="<%= image_path("OfflinePurpleBlues.zip")%>" download>Offline Purple Blues</a>
+<br><br><br>
+
+<%= link_to '★' ,raters_path%>
+
+<script>
+function myFunction(id) {
+    if (document.getElementById(id).style.display == "none") {
+    document.getElementById(id).style.display = 'table';
+  }
+
+  else {
+    document.getElementById(id).style.display = "none";
+  }
+}
+
+
+
+</script>
+    
 </head>
 <body>
+
+
     <div class="example">
 
         <div class="player">
             <div class="pl"></div>
             <div class="title"></div>
-            <div class="artist"></div>
+
 	    <div class="mood"></div>
             <div class="cover"></div>
             <div class="controls">
@@ -26,23 +69,74 @@
             <div class="tracker"></div>
         </div>
 
-  
-
-
         <ul class="playlist">
-	<% @songs.where("mood_id=1").find_each do |song|%>
-            <li audiourl="<%=song.audio.url%>" cover="cover2.jpg" artist="<%=song.artist.artistname%>" mood="<%=song.mood.moodname%>" ><%=song.name%> </li>
+	<% @songs.each do |song|%>
+<% @rater=Rater.where("song_id=? and user_id=?", song.id,current_user.id).take %>
+            <li audiourl="<%=song.audio.url%>" mood="<%=@rater.mood.moodname%>" songid="<%=@rater.id%>"><%=song.name%> </li>
 	  <% end %>        
 	</ul>
 
     </div>
 </body>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
+<a href="#" onclick="myFunction('t01'); return false;">Click here to rate/download</a>
+
+<table id="t01" class="sortable" border=2 style="width:100%">
+<h1> DOWNLOAD SONGS! </h1>
+<p> Click Control+S on the audio player page, if the file does not get downloaded. </p>
+<h1> RATE SONGS! </h1>
+<p> 1st star => perfect. 2nd star => change mood. 3rd Star => Wrong mood wrong song!</p>
+
+<br><br>
+
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Mood</th>
+      <th>Artist</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <% @songs.each_with_index do |song,i| %>
+<% @rater=Rater.where("song_id=? and user_id=?", song.id,current_user.id).take %>
+      <tr>
+        <td><%= song.name %></td>
+        <td><%= @rater.mood.moodname %></td>
+        <td><%= song.artist.artistname %></td>
+        <td><a href="<%=song.audio.url(:original, false)%>" download>Download</a></td>
+ <td><span class="rating" id="<%= i %>">
+        <input type="radio" class="rating-input"
+    id="rating-input-<%= i%>-5" name="rating-input-<%= i%>"/>
+        <label for="rating-input-<%= i%>-5" class="rating-star"></label>
+        <input type="radio" class="rating-input"
+                id="rating-input-<%= i%>-4" name="rating-input-<%= i%>"/>
+        <label for="rating-input-<%= i%>-4" class="rating-star"></label>
+        <input type="radio" class="rating-input"
+                id="rating-input-<%= i%>-3" name="rating-input-<%= i%>"/>
+        <label for="rating-input-<%= i%>-3" class="rating-star"></label>
+        <input type="radio" class="rating-input"
+                id="rating-input-<%= i%>-2" name="rating-input-<%= i%>"/>
+        <label for="rating-input-<%= i%>-2" class="rating-star"></label>
+        <input type="radio" class="rating-input"
+                id="rating-input-<%= i%>-1" name="rating-input-<%= i%>"/>
+        <label for="rating-input-<%= i%>-1" class="rating-star"></label>
+</span></td> 
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br><br>
+
+
+<!-- $('.rating').click(function(){
+	get the id from 'this' 
+$.get(/rate,{id: id},function(){
+//register a route for /rate
+})})
+-->
+
+
 </html>
-
-

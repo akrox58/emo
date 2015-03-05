@@ -32,7 +32,7 @@ table#t01 {
       <th>Name</th>
       <th>Mood</th>
       <th>Artist</th>
-      <th colspan="4"></th>
+      <th colspan="5"></th>
     </tr>
   </thead>
 
@@ -43,7 +43,7 @@ table#t01 {
         <td><%= song.name %></td>
         <td><%= song.mood.moodname %></td>
         <td><%= song.artist.artistname %></td>
-<td><a href='<%= song.audio.url %>'>Play</a> </td>
+	<td><a href='<%= song.audio.url %>'>Play</a> </td>
         <td><%= link_to 'Show', song %></td>
         <td><%= link_to 'Edit', edit_song_path(song) %></td>
         <td><%= link_to 'Destroy', song, method: :delete, data: { confirm: 'Are you sure?' } %></td>

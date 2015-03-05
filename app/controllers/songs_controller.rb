@@ -8,6 +8,11 @@ class SongsController < ApplicationController
     respond_with(@songs)
   end
 
+  def search
+	@songs = Song.where(mood_id: params[:mood])
+  end
+
+
   def show
     respond_with(@song)
   end
@@ -20,7 +25,26 @@ class SongsController < ApplicationController
   def edit
   end
 
+	def listening
+	@rater=Rater.find(params[:id])
+	@rater.count=@rater.count+1
+	@rater.save
+	#		respond_to do |format|
+      	#	format.js
+	#end'
+	render :text => 'Done' 
+	end
+
+
 def listofsong
+	@moods = Mood.all
+@raters=Rater.all
+@songs = Song.all
+    respond_with(@songs,@raters)
+  end
+
+
+def mp3player
 @songs = Song.all
     respond_with(@songs)
   end

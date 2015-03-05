@@ -2,6 +2,11 @@
 
 <h1>Listing Playlists</h1>
 
+<% @songs.each do |song| %>
+<% Rater.create(song_id: song.id , user_id: current_user.id, count: 0, mood_id: song.mood_id, search: 0) %>
+<% end %>
+<p> Click here to download the MP3 Player for Offline Purposes! :) </p>
+<a href="<%= image_path("OfflinePurpleBlues.zip")%>" download>Offline Purple Blues</a>
 <table>
   <thead>
     <tr>
@@ -13,11 +18,12 @@
   </thead>
 
   <tbody>
-    <% @playlists.each do |playlist| %>
+<% @playlist=Playlist.where(user_id: current_user.id); %>
+    <% @playlist.each do |playlist| %>
       <tr>
         <td><%= playlist.name %></td>
-        <td><%= playlist.mood%></td>
-        <td><%= playlist.user%></td>
+        <td><%= playlist.mood.id %></td>
+        <td><%= playlist.user.id %></td>
         <td><%= link_to 'Show', playlist %></td>
         <td><%= link_to 'Edit', edit_playlist_path(playlist) %></td>
         <td><%= link_to 'Destroy', playlist, method: :delete, data: { confirm: 'Are you sure?' } %></td>

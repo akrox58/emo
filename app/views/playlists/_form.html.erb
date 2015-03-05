@@ -4,8 +4,9 @@
   <div class="form-inputs">
     How do you feel today?
     <%= f.input :name %>
-    <%= f.association :mood %>
-    <%= f.association :user %>
+    <%= f.association :mood,:label_method => :moodname, :value_method => :id%>
+    <%= f.association :user, :label_method => :email, :value_method => :id %>
+  	
   </div>
 
   <div class="form-actions">

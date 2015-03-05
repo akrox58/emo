@@ -14,20 +14,22 @@ jQuery(document).ready(function() {
     var song;
     var tracker = $('.tracker');
     var volume = $('.volume');
-
-    function initAudio(elem) {
-        var url = elem.attr('audiourl');
-        var title = elem.text();
-	var mood=elem.attr('mood');
-        var cover = elem.attr('cover');
-        var artist = elem.attr('artist');
-
+ var url;
+var title;
+var mood;
+var songid;
+    function initAudio(elem) 
+	{
+         url = elem.attr('audiourl');
+         title = elem.text();
+	 mood = elem.attr('mood');
+	 songid=elem.attr('songid');
         $('.player .title').text(title);
-        $('.player .artist').text(artist);
-	$('player .mood').text(mood);
-        $('.player .cover').css('background-image' , 'image-url(' + cover + ')');
+	$('.player .mood').text(mood);
 
         song = new Audio(url);
+
+
 
         // timeupdate event listener
         song.addEventListener('timeupdate',function (){
@@ -37,18 +39,56 @@ jQuery(document).ready(function() {
 
         $('.playlist li').removeClass('active');
         elem.addClass('active');
+	
+
     }
+function alertme()
+{
+	alert('/listening/'+ songid);
+}
+
+    function Callme()
+	{
+
+	$.ajax('/songs/listening/'+songid,{type: 'GET'});
+		
+	}
+		
+
     function playAudio() {
-        song.play();
 
-        tracker.slider("option", "max", song.duration);
+		song.addEventListener('ended', function()
+		 {
+			var next = $('.playlist li.active').next();
+     			   if (next.length == 0) 
+				{
+            				next = $('.playlist li:first-child');
+        			}
+			initAudio(next);
+    		
+		song.addEventListener('loadedmetadata', function() {
+				
+    				playAudio();
+	
 
-        $('.play').addClass('hidden');
-        $('.pause').addClass('visible');
-    }
+				});
+    		},false);
+
+	
+    		
+		Callme();
+		tracker.slider("option", "max", song.duration);
+			song.play();
+		        $('.play').addClass('hidden');
+      			  $('.pause').addClass('visible');
+
+       			
+   
+	}
+
+
     function stopAudio() {
         song.pause();
-
         $('.play').removeClass('hidden');
         $('.pause').removeClass('visible');
     }
@@ -71,7 +111,7 @@ jQuery(document).ready(function() {
     $('.fwd').click(function (e) {
         e.preventDefault();
 
-        stopAudio();
+        stopAudio();	
 
         var next = $('.playlist li.active').next();
         if (next.length == 0) {
@@ -91,12 +131,11 @@ jQuery(document).ready(function() {
             prev = $('.playlist li:last-child');
         }
         initAudio(prev);
-    });
+
+	 });
 
     // show playlist
     $('.pl').click(function (e) {
-        e.preventDefault();
-
         $('.playlist').fadeIn(300);
     });
 
@@ -104,20 +143,25 @@ jQuery(document).ready(function() {
     $('.playlist li').click(function () {
         stopAudio();
         initAudio($(this));
+	Callme();
+	song.addEventListener('loadedmetadata', function() {
+    				playAudio();
+
+				});
     });
 
     // initialization - first element in playlist
     initAudio($('.playlist li:first-child'));
 
     // set volume
-    song.volume = 0.8;
+    song.volume = 0.5;
 
     // initialize the volume slider
     volume.slider({
         range: 'min',
         min: 1,
         max: 100,
-        value: 80,
+        value: 50,
         start: function(event,ui) {},
         slide: function(event, ui) {
             song.volume = ui.value / 100;

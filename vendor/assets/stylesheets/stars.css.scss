@@ -1,0 +1,11 @@
+.rating { width: 100px !important; margin-top: 10px !important; padding: 4px 6px 0 !important; height: 33px !important; overflow: hidden; display: inline-block }
+.rating-input { position: absolute !important; left: 0 !important; display: none !important}
+.rating-star { display: block; float: right; width: 17px; height: 17px; margin-top: 1px; margin-left: 0; background: image-url('star.jpg') 0 0px }
+.rating-star:hover
+{ background-position: 0 15px !important }
+
+.rating-star:hover~.rating-star
+{ background-position: 0 15px !important}
+
+ .rating-input:checked~.rating-star 
+{ background-position: 0 15px !important}

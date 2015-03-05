@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @rater.song.name %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @rater.user.email %>
+</p>
+
+<p>
+  <strong>Mood:</strong>
+  <%= @rater.mood.moodname %>
+</p>
+
+<%= link_to 'Edit', edit_rater_path(@rater) %> |
+<%= link_to 'Back', raters_path %>

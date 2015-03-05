@@ -4,12 +4,17 @@ Rails.application.routes.draw do
   resources :playlists
 
 resources :songs do
+ 
   collection do
     get 'listofsong'
+	get "/listening" => "songs#listening"
   end
+   
+
+
 end
 
-
+  resources :comments
   resources :moods
 
   resources :playlists
