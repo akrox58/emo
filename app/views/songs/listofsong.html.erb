@@ -69,7 +69,7 @@ $.ajax('/raters/uppp/'+number,{type: 'GET'});
 
         <ul class="playlist">
 	 <% @raters.each do |ra| %>
-            <li audiourl="<%=ra.song.audio.url%>" artist="<%=ra.song.artist.artistname%>" mood="<%=ra.mood.moodname%>" songid="<%=ra.id%>" ><%=ra.song.name%> </li>
+            <li audiourl="<%=ra.song.audio.url%>" artist="<%=ra.song.artist.artistname%>" mood="<%=ra.mood.moodname%>" songid="<%=ra.song.id%>" rateid="<%=ra.id%>" ><%=ra.song.name%> </li>
 	  <% end %>        
 	</ul>
 
@@ -78,11 +78,11 @@ $.ajax('/raters/uppp/'+number,{type: 'GET'});
 
 <a href="#" onclick="myFunction('t01'); return false;">Click here to rate/download</a>
 
-<table class="table table-hover" id="t01" border=2 style="width:100%">
+<table class="sortable" id="t01" border=2 style="width:100%">
 <h1> DOWNLOAD SONGS! </h1>
 <p> Click Control+S on the audio player page, if the file does not get downloaded. </p>
 <h1> RATE SONGS! </h1>
-<p> 1st star => perfect. 2nd star => change mood. 3rd Star => Wrong mood wrong song!</p>
+<p> 3 stars => perfect. 2 stars => change mood. 1 Star => Wrong mood wrong song!</p>
 
 <br><br>
 

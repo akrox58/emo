@@ -10,6 +10,7 @@ before_action :set_rater, only: [:show, :edit, :update, :destroy]
 def edit
 end
  def show
+   @raters=Rater.where(:mood_id=>@rater.mood.id , :user_id => current_user.id, :play => 1)
     respond_with(@rater)
   end
 
@@ -54,6 +55,8 @@ def signup
  Rater.create(song_id: song.id , user_id: current_user.id, count: 0, mood_id: song.mood_id, search: 0, play: 1)
 end
 end
+
+
  def update
     @rater.update(rater_params)
     respond_with(@rater)

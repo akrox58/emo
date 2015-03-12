@@ -4,17 +4,14 @@ class PlaylistsController < ApplicationController
   respond_to :html
 
   def index
-  
-    @playlists = Playlist.all
-@raters=Rater.all
-@songs = Song.all
-    respond_with(@playlists,@songs,@raters)
+    @raters=Rater.where(:user_id => current_user.id, :play => 1)
+    respond_with(@playlists,@raters)
   end
 
   def show
      
    @raters=Rater.where(:mood_id=>@playlist.mood , :user_id => current_user.id, :play => 1)
-    respond_with(@playlist)
+    respond_with(@playlist,@rater)
   end
 
   def new

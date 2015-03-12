@@ -24,6 +24,7 @@ var songid;
          title = elem.text();
 	 mood = elem.attr('mood');
 	 songid=elem.attr('songid');
+	rateid=elem.attr('rateid');
         $('.player .title').text(title);
 	$('.player .mood').text(mood);
 
@@ -42,16 +43,12 @@ var songid;
 	
 
     }
-function alertme()
-{
-	alert('/listening/'+ songid);
-}
 
     function Callme()
 	{
 
-	$.ajax('/songs/listening/'+songid,{type: 'GET'});
-		
+	$.ajax('/songs/listening/'+rateid,{type: 'GET'});
+	$.ajax('/songs/pop/'+songid,{type: 'GET'});
 	}
 		
 

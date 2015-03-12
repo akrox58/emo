@@ -6,20 +6,18 @@ Rails.application.routes.draw do
 resources :songs do
  
   collection do
-    get 'listofsong'
+   	get 'listofsong'
 	get "/listening/:id" => "songs#listening"
-get "/listenin/:id" => "songs#listenin"
+	get "/listenin/:id" => "songs#listenin"
+	get "/pop/:id" => "songs#pop"
   end
    
-
-
 end
 
   resources :comments
   resources :moods
 
   resources :playlists
-
   resources :raters do
 collection do
 get "/signup" => "raters#signup"

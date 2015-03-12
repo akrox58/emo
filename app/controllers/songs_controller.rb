@@ -9,8 +9,14 @@ class SongsController < ApplicationController
   end
 
   def search
+
 @raters=Rater.where(mood_id: params[:mood] , :user_id => current_user.id, :play => 1)
-	
+@recom=Rater.where.not(:user_id => current_user.id)
+@recoms=@recom.where(mood_id: params[:mood])
+@roofie=Rater.where(:user_id => current_user.id)
+@roof=@roofie.where("mood_id<>?",params[:mood])
+@roo=@roof.where("song_id IN (select r.song_id from raters r where r.mood_id=? and r.user_id<>?)",params[:mood],current_user.id)  
+
   end
 
 
@@ -33,6 +39,16 @@ class SongsController < ApplicationController
 	@rater.save
 	render :text => 'Done' 
 	end
+
+
+	def pop
+	@popular=Popular.where(:song_id => params[:id]).take
+	@popular.count=@popular.count+1
+	@popular.save
+	render :text => 'Done' 
+	end
+
+
 	def listenin
 	@rater=Rater.find(params[:id])
 	@rater.search=@rater.search+1
