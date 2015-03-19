@@ -96,25 +96,25 @@ $.ajax('/raters/uppp/'+number,{type: 'GET'});
 </table>
 
 
-<h1>RECOMMENDED SONGS</h1>
+<h1>RECOMMENDED SONGS: </h1>
 <table class="table table-hover">
  <thead>
     <tr>
       <th>Name</th>
-      <th>Mood</th>
       <th>Artist</th>
+      <th>Mood</th>
       <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
 
-   <% @roo.each_with_index do |ra,i| %>
+   <% @reccomending.each_with_index do |ra,i| %>
 
       <tr>
         <td><%= ra.song.name %></td>
-        <td><%= ra.mood.moodname %></td>
         <td><%= ra.song.artist.artistname %></td>
+	<td><%= ra.mood.moodname %></td>
         <td><a href="<%=ra.song.audio.url(:original, false)%>" download>Download</a></td>
  <td><span class="rating" id="<%= i %>">
         
@@ -132,6 +132,17 @@ $.ajax('/raters/uppp/'+number,{type: 'GET'});
     <% end %>
   </tbody>
 </table>
+
+
+
+
+
+
+
+
+
+
+
 
 
 

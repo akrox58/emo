@@ -1,0 +1,34 @@
+select user_id,name,moodname from raters,songs,moods where songs.mood_id=moods.id and raters.song_id=songs.id and raters.mood_id=songs.mood_id order by user_id,moodname;
+
+
+
+select user_id,name,moodname from raters,songs,moods where songs.mood_id=moods.id and raters.song_id=songs.id and raters.mood_id=songs.mood_id and user_id=4 and raters.song_id IN (select r.song_id from raters r where r.mood_id=1 and r.user_id<>4);
+
+@roo=Rater.where("raters.user_id= current_user.id ").joins("left join recoms on raters.song_id=@recoms.id")
+
+lists all songs for the users
+
+user_id=4 and a.song_id=1;
+and a.song_id=(select b.song_id from raters b where b.mood_id=1)
+
+
+select user_id,mood_id,song_id from raters where user_id=4 and raters.song_id IN (select r.song_id from raters r where r.mood_id=1 and r.user_id<>4);
+
+
+@roo=Rater.where(:user_id => current_user.id, :song_id => @recoms.song_id)
+
+
+@recoms.each do |rat|
+@roo=Rater.where(:user_id => current_user.id, :song_id => rat.song_id)
+end
+
+
+
+
+select user_id,mood_id,song_id from raters where user_id=4 and raters.song_id IN (select r.song_id from raters r where r.mood_id=1 and r.user_id<>4);
+
+
+select user_id,mood_id,song_id from raters where user_id=4 and raters.song_id IN (select r.song_id from raters r where r.mood_id=1 and r.user_id<>4);
+
+
+

@@ -11,13 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150305124409) do
+ActiveRecord::Schema.define(version: 20150319120141) do
 
   create_table "artists", force: :cascade do |t|
+    t.integer  "song_id"
     t.string   "artistname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "artists", ["song_id"], name: "index_artists_on_song_id"
 
   create_table "comments", force: :cascade do |t|
     t.string   "content"
@@ -26,21 +29,14 @@ ActiveRecord::Schema.define(version: 20150305124409) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "comms", force: :cascade do |t|
-    t.integer  "moods_id"
-    t.string   "comment"
-    t.string   "mood"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "comms", ["moods_id"], name: "index_comms_on_moods_id"
-
   create_table "moods", force: :cascade do |t|
+    t.integer  "song_id"
     t.string   "moodname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "moods", ["song_id"], name: "index_moods_on_song_id"
 
   create_table "playlists", force: :cascade do |t|
     t.integer  "mood_id"
@@ -78,6 +74,20 @@ ActiveRecord::Schema.define(version: 20150305124409) do
   add_index "raters", ["mood_id"], name: "index_raters_on_mood_id"
   add_index "raters", ["song_id"], name: "index_raters_on_song_id"
   add_index "raters", ["user_id"], name: "index_raters_on_user_id"
+
+  create_table "reccommenders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "happy"
+    t.integer  "sad"
+    t.integer  "angry"
+    t.integer  "fear"
+    t.integer  "surprise"
+    t.integer  "mood_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "reccommenders", ["mood_id"], name: "index_reccommenders_on_mood_id"
 
   create_table "songs", force: :cascade do |t|
     t.string   "name"

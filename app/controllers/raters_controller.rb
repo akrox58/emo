@@ -15,18 +15,87 @@ end
   end
 
 def up
-@rater=Rater.where(song_id: params[:id], :user_id => current_user.id).take
-	if @rater.mood_id == 5		
-	@rater.mood_id= 1
-else
-@rater.mood_id=@rater.mood_id + 1
+@rcurrent=Rater.where(song_id: params[:id], :user_id => current_user.id).take
+r=Reccommender.where(user_id: current_user.id).first
+
+if @rcurrent.mood_id==1
+	@rrecom=Rater.where(song_id: params[:id], :user_id => r.happy).take	
+	if @rcurrent.mood_id != @rrecom.mood_id
+		@rcurrent.mood_id=@rrecom.mood_id
+
+	else
+			
+		 @rcurrent.mood_id= rand(1..5)
+
+		end
+
+
+	
+
+
+elsif @rcurrent.mood_id==2
+	@rrecom=Rater.where(song_id: params[:id], :user_id => r.sad).take	
+	if @rcurrent.mood_id != @rrecom.mood_id
+		@rcurrent.mood_id=@rrecom.mood_id
+
+	else	
+		 @rcurrent.mood_id= rand(1..5)
+
+		end
+
+
+	
+
+
+
+elsif @rcurrent.mood_id==3
+	@rrecom=Rater.where(song_id: params[:id], :user_id => r.angry).take	
+	if @rcurrent.mood_id != @rrecom.mood_id
+		@rcurrent.mood_id=@rrecom.mood_id
+
+	else	
+			 @rcurrent.mood_id=  rand(1..5)
+		
+
+
+	end
+
+
+elsif @rcurrent.mood_id==4
+	@rrecom=Rater.where(song_id: params[:id], :user_id => r.fear).take	
+	if @rcurrent.mood_id != @rrecom.mood_id
+		@rcurrent.mood_id=@rrecom.mood_id
+
+	else			
+			 @rcurrent.mood_id=  rand(1..5)
+
+		
+
+
+	end
+
+
+elsif @rcurrent.mood_id==5
+	@rrecom=Rater.where(song_id: params[:id], :user_id => r.surprise).take	
+	if @rcurrent.mood_id != @rrecom.mood_id
+		@rcurrent.mood_id=@rrecom.mood_id
+
+	else		
+		 @rcurrent.mood_id= rand(1..5)
+
+		
+
+
+	end
+
+
 end
-	@rater.play=1
-	@rater.save
+
+
+	@rcurrent.play=1
+	@rcurrent.save
 
 	render :text => 'Done' 
-
-
 end
 
 def upp
@@ -54,6 +123,13 @@ def signup
 @songs.each do |song|
  Rater.create(song_id: song.id , user_id: current_user.id, count: 0, mood_id: song.mood_id, search: 0, play: 1)
 end
+
+uu=User.all
+uu.each do |user|
+Reccommender.create(user_id: user.id)
+end
+
+
 end
 
 

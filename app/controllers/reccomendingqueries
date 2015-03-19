@@ -1,0 +1,151 @@
+OLD RATER QUERY
+
+recoms=recom.where(mood_id: params[:mood])
+roofie=Rater.where(:user_id => current_user.id)
+roof=roofie.where("mood_id<>?",params[:mood])
+@roo=roof.where("song_id IN (select r.song_id from raters r where r.mood_id=? and r.user_id<>?)",params[:mood],current_user.id)  
+
+
+
+6
+10
+13
+select user_id,song_id,mood_id
+from raters
+where user_id!=4 and mood_id=1 and song_id= (select song_id from raters where mood_id=1);
+
+select user_id,song_id,mood_id
+from raters
+where user_id!=4 and mood_id=1 and song_id= (select song_id from raters where mood_id=1 and user_id=4);
+
+
+
+select user_id,song_id,mood_id
+from raters
+where user_id!=4 and mood_id=1 and song_id= (select song_id from raters where mood_id=1);
+
+
+
+select song_id from raters where user_id!=4 and mood_id=1 and song_id=(select song_id from raters where user_id=4 and mood_id=3);
+
+
+
+@raters=Rater.where(mood_id: params[:mood] , :user_id => current_user.id, :play => 1)
+recom=Rater.where.not(:user_id => current_user.id)
+recom2=recom.where(mood_id: params[:mood])
+@finalset=recom2.where("song_id IN (select song_id from raters where user_id=? and mood_id=?)",params[:mood],current_user.id)
+
+
+recoms=recom.where(mood_id: params[:mood])
+roofie=Rater.where(:user_id => current_user.id)
+roof=roofie.where("mood_id<>?",params[:mood])
+@roo=roof.where("song_id IN (select r.song_id from raters r where r.mood_id=? and r.user_id<>?)",params[:mood],current_user.id)
+
+a=Rater.select(:user_id,:song_id).group(:user_id)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+elsif @rcurrent.mood_id=2
+	@rrecom=Rater.where(song_id: params[:id], :user_id => r.sad).take	
+	if @rcurrent.mood_id != @rrecom.mood_id
+		@rcurrent.mood_id=@rrecom.mood_id
+
+	else	
+		 @rcurrent.mood_id= @rcurrent.mood_id + 1
+
+		end
+
+
+	
+
+
+
+elsif @rcurrent.mood_id=3
+	@rrecom=Rater.where(song_id: params[:id], :user_id => r.angry).take	
+	if @rcurrent.mood_id != @rrecom.mood_id
+		@rcurrent.mood_id=@rrecom.mood_id
+
+	else	
+			 @rcurrent.mood_id= @rcurrent.mood_id + 1
+		
+
+
+	end
+
+
+elsif @rcurrent.mood_id=4
+	@rrecom=Rater.where(song_id: params[:id], :user_id => r.fear).take	
+	if @rcurrent.mood_id != @rrecom.mood_id
+		@rcurrent.mood_id=@rrecom.mood_id
+
+	else			
+			 @rcurrent.mood_id= @rcurrent.mood_id + 1
+
+		
+
+
+	end
+
+
+elsif @rcurrent.mood_id=5
+	@rrecom=Rater.where(song_id: params[:id], :user_id => r.surprise).take	
+	if @rcurrent.mood_id != @rrecom.mood_id
+		@rcurrent.mood_id=@rrecom.mood_id
+
+	else		
+		 @rcurrent.mood_id=1
+
+		
+
+
+	end
+
+
+

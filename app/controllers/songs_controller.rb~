@@ -11,11 +11,37 @@ class SongsController < ApplicationController
   def search
 
 @raters=Rater.where(mood_id: params[:mood] , :user_id => current_user.id, :play => 1)
-@recom=Rater.where.not(:user_id => current_user.id)
-@recoms=@recom.where(mood_id: params[:mood])
-@roofie=Rater.where(:user_id => current_user.id)
-@roof=@roofie.where("mood_id<>?",params[:mood])
-@roo=@roof.where("song_id IN (select r.song_id from raters r where r.mood_id=? and r.user_id<>? and r.play=1)",params [:mood],current_user.id)
+recom=Rater.where.not(:user_id => current_user.id)
+recomuser=Rater.where("mood_id<>? and user_id=?",params[:mood],current_user.id)
+recom2=recom.where(mood_id: params[:mood])
+
+
+@set=recom2.where("song_id IN (select song_id from raters where mood_id=? and user_id=?)",params[:mood],current_user.id)
+
+f1=@set.group(:user_id).first
+rec=Reccommender.where(user_id: current_user.id).take
+u=Reccommender.where(user_id: current_user.id).take
+
+unless f1.nil?
+if f1.mood_id == 1
+rec.update( happy: f1.user_id )
+@reccomending=recomuser.where("song_id IN (select song_id from raters where mood_id=1 and user_id=?)",u.happy)
+elsif f1.mood_id ==2
+rec.update( sad: f1.user_id )
+@reccomending=recomuser.where("song_id IN (select song_id from raters where mood_id=2 and user_id=?)",u.sad)
+elsif f1.mood_id ==3
+rec.update( angry: f1.user_id )
+@reccomending=recomuser.where("song_id IN (select song_id from raters where mood_id=3 and user_id=?)",u.angry)
+elsif f1.mood_id ==4
+rec.update( fear: f1.user_id )
+@reccomending=recomuser.where("song_id IN (select song_id from raters where mood_id=4 and user_id=?)",u.fear)
+elsif f1.mood_id ==5
+rec.update( surprise: f1.user_id )
+@reccomending=recomuser.where("song_id IN (select song_id from raters where mood_id=5 and user_id=?)",u.surprise)
+end
+rec.save
+end
+
 
 
 
