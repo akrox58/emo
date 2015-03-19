@@ -71,24 +71,24 @@ $.ajax('/raters/uppp/'+number,{type: 'GET'});
 
   <tbody>
 
-   <% @raters.each_with_index do |ra,i| %>
+   <% @raters.each_with_index do |ra,j| %>
 
       <tr>
         <td><%= ra.song.name %></td>
         <td><%= ra.mood.moodname %></td>
         <td><%= ra.song.artist.artistname %></td>
         <td><a href="<%=ra.song.audio.url(:original, false)%>" download>Download</a></td>
- <td><span class="rating" id="<%= i %>">
+ <td><span class="rating" id="<%= j %>"
         
         <input type="radio" onclick="Rateme2(<%=ra.song.id%>)" class="rating-input"
-                id="rating-input-<%= i%>-3" name="rating-input-<%= i%>"/>
-        <label for="rating-input-<%= i%>-3" class="rating-star"></label>
+                id="rating-input-<%= j%>-3" name="rating-input-<%= j%>"/>
+        <label for="rating-input-<%= j%>-3" class="rating-star"></label>
         <input type="radio" onclick="Rateme(<%=ra.song.id%>)" class="rating-input"
-                id="rating-input-<%= i%>-2" name="rating-input-<%= i%>"/>
-        <label for="rating-input-<%= i%>-2" class="rating-star"></label>
+                id="rating-input-<%= j%>-2" name="rating-input-<%= j%>"/>
+        <label for="rating-input-<%= j%>-2" class="rating-star"></label>
         <input type="radio" onclick="Rateme1(<%=ra.song.id%>)" class="rating-input"
-                id="rating-input-<%= i%>-1" name="rating-input-<%= i%>"/>
-        <label for="rating-input-<%= i%>-1" class="rating-star"></label>
+                id="rating-input-<%= j%>-1" name="rating-input-<%= j%>"/>
+        <label for="rating-input-<%= j%>-1" class="rating-star"></label>
 </span></td> 
       </tr>
     <% end %>
