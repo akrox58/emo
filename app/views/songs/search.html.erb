@@ -108,8 +108,9 @@ $.ajax('/raters/uppp/'+number,{type: 'GET'});
   </thead>
 
   <tbody>
-
-   <% @reccomending.each_with_index do |ra,i| %>
+<% i=100 %>
+   <% @reccomending.each do |ra| %>
+<% i+=1%>
 
       <tr>
         <td><%= ra.song.name %></td>
