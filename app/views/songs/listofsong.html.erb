@@ -68,7 +68,8 @@ $.ajax('/raters/uppp/'+number,{type: 'GET'});
         </div>
 
         <ul class="playlist">
-	 <% @raters.each do |ra| %>
+	<% raters=@raters.where(:play => 1).order(:count,:search).take(10) %>
+	 <% raters.each do |ra| %>
             <li audiourl="<%=ra.song.audio.url%>" artist="<%=ra.song.artist.artistname%>" mood="<%=ra.mood.moodname%>" songid="<%=ra.song.id%>" rateid="<%=ra.id%>" ><%=ra.song.name%> </li>
 	  <% end %>        
 	</ul>

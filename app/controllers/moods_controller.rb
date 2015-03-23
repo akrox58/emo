@@ -16,7 +16,19 @@ class MoodsController < ApplicationController
     @mood = Mood.new
     respond_with(@mood)
   end
+	
+  def lyricsdetected
+	
+	 file = params[:uploaded_file].read
+	File.open('word.txt', 'w') do |f2|    
+  		f2.puts file 
+		end  
+`python def.py`
+	
+end
+  def lyrics
 
+ end
   def edit
   end
 

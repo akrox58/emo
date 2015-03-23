@@ -2,10 +2,26 @@
 
 one:
   name: MyString
-  mood_id: 
+  mood_id: 1
+  artist_id: 1
+  audio_file_name: MyString
+  audio_content_type: MyString
+  audio_file_size: 1
+  audio_updated_at: 2015-03-22 00:54:41
+  created_at: 2015-03-22 00:54:41
+  updated_at: 2015-03-22 00:54:41
   artist_id: 
+  mood_id: 
 
 two:
   name: MyString
-  mood_id: 
+  mood_id: 1
+  artist_id: 1
+  audio_file_name: MyString
+  audio_content_type: MyString
+  audio_file_size: 1
+  audio_updated_at: 2015-03-22 00:54:41
+  created_at: 2015-03-22 00:54:41
+  updated_at: 2015-03-22 00:54:41
   artist_id: 
+  mood_id: 

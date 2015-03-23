@@ -9,13 +9,11 @@ class SongsController < ApplicationController
   end
 
   def search
-
+@moods=Mood.all
 @raters=Rater.where(mood_id: params[:mood] , :user_id => current_user.id, :play => 1)
 recom=Rater.where.not(:user_id => current_user.id)
 recomuser=Rater.where("mood_id<>? and user_id=?",params[:mood],current_user.id)
 recom2=recom.where(mood_id: params[:mood])
-
-
 @set=recom2.where("song_id IN (select song_id from raters where mood_id=? and user_id=?)",params[:mood],current_user.id)
 
 f1=@set.group(:user_id).first
@@ -42,18 +40,15 @@ end
 rec.save
 end
 
-
-
-
   end
 
 
   def show
+	Popular.create(song_id: params[:id], count: 0)
     respond_with(@song)
   end
 
   def new
-
     @song = Song.new
     respond_with(@song)
   end
@@ -104,6 +99,7 @@ def listofsong
   end
 
   def destroy
+	Popular.where(song_id: @song.id).delete
     @song.destroy
     respond_with(@song)
   end

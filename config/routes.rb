@@ -31,7 +31,8 @@ end
 
   resources :artists
   get "/search" => "songs#search", as: 'search'
-
+  match '/lyrics', to: 'moods#lyrics', via: :get
+match '/lyricsdetected', to: 'moods#lyricsdetected', via: :post
   mount Upmin::Engine => '/admin'
   root to: 'visitors#index'
   devise_for :users

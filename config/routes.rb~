@@ -6,10 +6,10 @@ Rails.application.routes.draw do
 resources :songs do
  
   collection do
-    get 'listofsong'
+   	get 'listofsong'
 	get "/listening/:id" => "songs#listening"
-get "/listenin/:id" => "songs#listenin"
-get "/pop/:id" => "songs#pop"
+	get "/listenin/:id" => "songs#listenin"
+	get "/pop/:id" => "songs#pop"
   end
    
 end
@@ -31,6 +31,7 @@ end
 
   resources :artists
   get "/search" => "songs#search", as: 'search'
+  match '/lyrics', to: 'moods#lyrics', via: [:get, :post]
 
   mount Upmin::Engine => '/admin'
   root to: 'visitors#index'

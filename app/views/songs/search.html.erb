@@ -14,16 +14,28 @@ function Rateme(number)
 {
 $.ajax('/raters/up/'+number,{type: 'GET'});
 }
-function Rateme1(number)
-{
-$.ajax('/raters/upp/'+number,{type: 'GET'});
-}
+
 function Rateme2(number)
 {
 $.ajax('/raters/uppp/'+number,{type: 'GET'});
 }
+
+function Rateme1(number)
+{
+$.ajax('/raters/upp/'+number,{type: 'GET'});
+}
 </script>
 <body>
+<h3> SEARCH SONGS BASED ON MOOD </h3>
+<form action="/search">
+	<select class="form-control" name="mood">
+		<% @moods.each do |m| %>
+		  <option value="<%= m.id %>"><%= m.moodname.titleize %></option>
+		<% end %>
+	</select>
+	<input type="submit" class="btn btn-primary">
+</form>
+
 <h3> PLAYING ALL SONGS </h3>
 
  <div class="example">
@@ -55,8 +67,9 @@ $.ajax('/raters/uppp/'+number,{type: 'GET'});
 
     </div>
 </body>
-
-
+<br><br>
+<%= link_to 'LYRICS', lyrics_path %>
+<br><br>
 <%= link_to '★' ,raters_path%>
 <h1>Listing ALL Songs based on MOOD SEARCHED</h1>
 <table class="table table-hover">
@@ -70,25 +83,27 @@ $.ajax('/raters/uppp/'+number,{type: 'GET'});
   </thead>
 
   <tbody>
-
-   <% @raters.each_with_index do |ra,j| %>
-
+<%i=0%>
+   <% @raters.each do |ra| %>
+<% i+=1%>
       <tr>
         <td><%= ra.song.name %></td>
-        <td><%= ra.mood.moodname %></td>
         <td><%= ra.song.artist.artistname %></td>
+	<td><%= ra.mood.moodname %></td>
         <td><a href="<%=ra.song.audio.url(:original, false)%>" download>Download</a></td>
- <td><span class="rating" id="<%= j %>"
+ <td><span class="rating" id="<%= i %>">
         
         <input type="radio" onclick="Rateme2(<%=ra.song.id%>)" class="rating-input"
-                id="rating-input-<%= j%>-3" name="rating-input-<%= j%>"/>
-        <label for="rating-input-<%= j%>-3" class="rating-star"></label>
+                id="rating-input-<%= i%>-3" name="rating-input-<%= i%>"/>
+        <label for="rating-input-<%= i%>-3" class="rating-star"></label>
+<% i+=1%>
         <input type="radio" onclick="Rateme(<%=ra.song.id%>)" class="rating-input"
-                id="rating-input-<%= j%>-2" name="rating-input-<%= j%>"/>
-        <label for="rating-input-<%= j%>-2" class="rating-star"></label>
+                id="rating-input-<%= i%>-2" name="rating-input-<%= i%>"/>
+        <label for="rating-input-<%= i%>-2" class="rating-star"></label>
+<% i+=1%>
         <input type="radio" onclick="Rateme1(<%=ra.song.id%>)" class="rating-input"
-                id="rating-input-<%= j%>-1" name="rating-input-<%= j%>"/>
-        <label for="rating-input-<%= j%>-1" class="rating-star"></label>
+                id="rating-input-<%= i%>-1" name="rating-input-<%= i%>"/>
+        <label for="rating-input-<%= i%>-1" class="rating-star"></label>
 </span></td> 
       </tr>
     <% end %>
@@ -108,7 +123,6 @@ $.ajax('/raters/uppp/'+number,{type: 'GET'});
   </thead>
 
   <tbody>
-<% i=100 %>
    <% @reccomending.each do |ra| %>
 <% i+=1%>
 
@@ -122,9 +136,11 @@ $.ajax('/raters/uppp/'+number,{type: 'GET'});
         <input type="radio" onclick="Rateme2(<%=ra.song.id%>)" class="rating-input"
                 id="rating-input-<%= i%>-3" name="rating-input-<%= i%>"/>
         <label for="rating-input-<%= i%>-3" class="rating-star"></label>
+<% i+=1%>
         <input type="radio" onclick="Rateme(<%=ra.song.id%>)" class="rating-input"
                 id="rating-input-<%= i%>-2" name="rating-input-<%= i%>"/>
         <label for="rating-input-<%= i%>-2" class="rating-star"></label>
+<% i+=1%>
         <input type="radio" onclick="Rateme1(<%=ra.song.id%>)" class="rating-input"
                 id="rating-input-<%= i%>-1" name="rating-input-<%= i%>"/>
         <label for="rating-input-<%= i%>-1" class="rating-star"></label>
@@ -133,18 +149,5 @@ $.ajax('/raters/uppp/'+number,{type: 'GET'});
     <% end %>
   </tbody>
 </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </html>

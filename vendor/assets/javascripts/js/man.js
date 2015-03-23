@@ -140,7 +140,6 @@ var songid;
     $('.playlist li').click(function () {
         stopAudio();
         initAudio($(this));
-	Callme();
 	song.addEventListener('loadedmetadata', function() {
     				playAudio();
 

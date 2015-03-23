@@ -99,16 +99,15 @@ end
 end
 
 def upp
-@rater=Rater.where(song_id: params[:id], :user_id => current_user.id).take
+@rater=Rater.where(song_id: params[:id], user_id: current_user.id).take
 	@rater.play=0
 	@rater.save
 	render :text => 'Done' 
 
-
 end
 
 def uppp
-@rater=Rater.where(song_id: params[:id], :user_id => current_user.id).take
+@rater=Rater.where(song_id: params[:id], user_id: current_user.id).take
 	@rater.play=1
 	@rater.save
 	render :text => 'Done' 
@@ -126,7 +125,7 @@ end
 
 uu=User.all
 uu.each do |user|
-Reccommender.create(user_id: user.id)
+Reccommender.create(user_id: user.id,happy: 6, sad: 6, angry: 6, fear: 6,surprise: 6)
 end
 
 
