@@ -249,7 +249,7 @@ for x in points:
 	zap.append(x)
 print zap
 if not zap:
-	cool="okay"
+	result="Happy"
 
 else:
 	
