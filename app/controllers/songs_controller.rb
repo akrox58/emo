@@ -40,6 +40,11 @@ end
 rec.save
 end
 
+@pop=Rater.where(user_id: current_user.id,mood_id: params[:mood]).order(count: :desc).take(5)
+@search=Rater.where(user_id: current_user.id,mood_id: params[:mood]).order(search: :desc).take(5)
+
+
+
   end
 
 
@@ -89,6 +94,13 @@ def listofsong
 
   def create
     @song = Song.new(song_params)
+    #songname = @song.name
+    #artistname = @song.artist.name
+    #find lyrics using python file pass args using command line
+    #read the text file 
+    #	@song.lyrics = "textfile read data"
+    # compute mood using python
+    #	@song.mood="mood"
     @song.save
     respond_with(@song)
   end

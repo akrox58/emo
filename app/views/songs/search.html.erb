@@ -67,6 +67,74 @@ $.ajax('/raters/upp/'+number,{type: 'GET'});
 
     </div>
 </body>
+
+
+
+
+
+<h3> FREQUENTLY SEARCHED </h3>
+
+ <div class="example">
+
+        <div class="player">
+            <div class="pl"></div>
+            <div class="title"></div>
+            <div class="artist"></div>
+	    <div class="mood"></div>
+            <div class="cover"></div>
+            <div class="controls">
+                <div class="play"></div>
+                <div class="pause"></div>
+                <div class="rew"></div>
+                <div class="fwd"></div>
+            </div>
+            <div class="volume"></div>
+            <div class="tracker"></div>
+        </div>
+
+   
+
+
+        <ul class="playlist">
+	  <% @search.each do |ra| %>
+            <li audiourl="<%=ra.song.audio.url%>" artist="<%=ra.song.artist.artistname%>" mood="<%=ra.mood.moodname%>" rateid="<%=ra.id%>" songid="<%=ra.song.id%>" ><%=ra.song.name%> </li>
+	  <% end %>        
+	</ul>
+
+    </div>
+
+
+<h3> FREQUENTLY LISTENED TO </h3>
+
+ <div class="example">
+
+        <div class="player">
+            <div class="pl"></div>
+            <div class="title"></div>
+            <div class="artist"></div>
+	    <div class="mood"></div>
+            <div class="cover"></div>
+            <div class="controls">
+                <div class="play"></div>
+                <div class="pause"></div>
+                <div class="rew"></div>
+                <div class="fwd"></div>
+            </div>
+            <div class="volume"></div>
+            <div class="tracker"></div>
+        </div>
+
+   
+
+
+        <ul class="playlist">
+	  <% @pop.each do |ra| %>
+            <li audiourl="<%=ra.song.audio.url%>" artist="<%=ra.song.artist.artistname%>" mood="<%=ra.mood.moodname%>" rateid="<%=ra.id%>" songid="<%=ra.song.id%>" ><%=ra.song.name%> </li>
+	  <% end %>        
+	</ul>
+
+    </div>
+
 <br><br>
 <br><br>
 <%= link_to '★' ,raters_path%>

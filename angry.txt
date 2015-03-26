@@ -26,6 +26,7 @@ belligerent
 bitter
 contemptuous
 hostile
+burn
 irate
 livid
 menacing
