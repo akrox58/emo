@@ -125,7 +125,7 @@ end
 
 uu=User.all
 uu.each do |user|
-Reccommender.create(user_id: user.id,happy: 6, sad: 6, angry: 6, fear: 6,surprise: 6)
+Reccommender.create(user_id: user.id,happy: 4, sad: 4, angry: 4, fear: 4,surprise: 4)
 end
 
 

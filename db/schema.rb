@@ -29,6 +29,16 @@ ActiveRecord::Schema.define(version: 20150321192351) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "comms", force: :cascade do |t|
+    t.integer  "moods_id"
+    t.string   "comment"
+    t.string   "mood"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "comms", ["moods_id"], name: "index_comms_on_moods_id"
+
   create_table "moods", force: :cascade do |t|
     t.integer  "song_id"
     t.string   "moodname"
