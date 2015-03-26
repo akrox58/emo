@@ -22,8 +22,9 @@ class MoodsController < ApplicationController
 	 file = params[:uploaded_file].read
 	File.open('word.txt', 'w') do |f2|    
   		f2.puts file 
-		end  
-`python def.py`
+		end
+	  
+	`python def.py`
 	
 end
   def lyrics

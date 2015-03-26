@@ -9,6 +9,7 @@ sorry
 hard
 alone
 down
+wreck
 miserable
 bored
 breakdown
@@ -62,6 +63,7 @@ sorrow
 angiushed
 bereaved
 bleak
+break
 despair
 despondent
 heartbroken
