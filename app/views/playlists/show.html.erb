@@ -1,4 +1,3 @@
-
 <head>
     <!-- add styles and scripts -->
   <%=stylesheet_link_tag 'css/styles.css' %>
@@ -23,7 +22,6 @@ function Rateme2(number)
 {
 $.ajax('/raters/uppp/'+number,{type: 'GET'});
 }
-
 </script>
 <h1> PLAYLIST DETAILS</h1>
 <p id="notice"><%= notice %></p>
@@ -115,4 +113,3 @@ $.ajax('/raters/uppp/'+number,{type: 'GET'});
 <%= link_to 'Edit', edit_playlist_path(@playlist) %> |
 <%= link_to 'Back', playlists_path %>
 </div>
-

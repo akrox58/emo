@@ -9,39 +9,53 @@ class SongsController < ApplicationController
   end
 
   def search
-@moods=Mood.all
-@raters=Rater.where(mood_id: params[:mood] , :user_id => current_user.id, :play => 1)
-recom=Rater.where.not(:user_id => current_user.id)
-recomuser=Rater.where("mood_id<>? and user_id=?",params[:mood],current_user.id)
-recom2=recom.where(mood_id: params[:mood])
-@set=recom2.where("song_id IN (select song_id from raters where mood_id=? and user_id=?)",params[:mood],current_user.id)
 
-f1=@set.group(:user_id).first
-rec=Reccommender.where(user_id: current_user.id).take
+
+@moods=Mood.all
+@raters=Rater.where(mood_id: params[:mood] ,:user_id => current_user.id, :play => 1)
+recomotheruser=Rater.where("mood_id=? and user_id<> ?",params[:mood],current_user.id)
+
+recomuser=Rater.where("mood_id<>? and user_id=?",params[:mood],current_user.id)
+
+groupedset=recomotheruser.where("song_id IN (select song_id from raters where mood_id=? and user_id=?)",params[:mood],current_user.id)
+
+f1=groupedset.select("user_id,mood_id,song_id,count(*) as total_count").group(:user_id).order("total_count DESC").first
+
 u=Reccommender.where(user_id: current_user.id).take
 
 unless f1.nil?
 if f1.mood_id == 1
-rec.update( happy: f1.user_id )
-@reccomending=recomuser.where("song_id IN (select song_id from raters where mood_id=1 and user_id=?)",u.happy)
+u.update( happy: f1.user_id )
 elsif f1.mood_id ==2
-rec.update( sad: f1.user_id )
-@reccomending=recomuser.where("song_id IN (select song_id from raters where mood_id=2 and user_id=?)",u.sad)
+u.update( sad: f1.user_id )
 elsif f1.mood_id ==3
-rec.update( angry: f1.user_id )
-@reccomending=recomuser.where("song_id IN (select song_id from raters where mood_id=3 and user_id=?)",u.angry)
+u.update( angry: f1.user_id )
 elsif f1.mood_id ==4
-rec.update( fear: f1.user_id )
-@reccomending=recomuser.where("song_id IN (select song_id from raters where mood_id=4 and user_id=?)",u.fear)
+u.update( fear: f1.user_id )
 elsif f1.mood_id ==5
-rec.update( surprise: f1.user_id )
-@reccomending=recomuser.where("song_id IN (select song_id from raters where mood_id=5 and user_id=?)",u.surprise)
+u.update( surprise: f1.user_id )
 end
-rec.save
+u.save
 end
 
-@pop=Rater.where(user_id: current_user.id,mood_id: params[:mood]).order(count: :desc).take(5)
-@search=Rater.where(user_id: current_user.id,mood_id: params[:mood]).order(search: :desc).take(5)
+
+
+# recommended for searched songs
+
+f22=groupedset.select("user_id,mood_id,song_id,count(*) as total_count").group(:user_id).order("total_count DESC").limit(5)
+
+r=Rater.where(user_id=0)
+f22.each do |u|
+	recc=recomuser.where("song_id IN (select song_id from raters where mood_id=? and user_id=?)", params[:mood],u.user_id)
+		r=r|recc
+end
+
+   raters=Rater.where(:mood_id=>params[:mood] , :user_id => current_user.id, :play => 1)
+   popu=Rater.where("song_id IN (select song_id from populars order by count desc limit 20) and user_id=? and mood_id <> ? ",current_user.id, params[:mood])
+
+popoose=popu.where("count = 0 or search = 0 and user_id=? and mood_id <> ? ",current_user.id, params[:mood]).take(5)
+popu=popu.take(10)
+@rec = r|popu|popoose
 
 
 
