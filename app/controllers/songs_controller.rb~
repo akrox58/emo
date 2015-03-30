@@ -17,7 +17,6 @@ recomotheruser=Rater.where("mood_id=? and user_id<> ?",params[:mood],current_use
 
 recomuser=Rater.where("mood_id<>? and user_id=?",params[:mood],current_user.id)
 
-
 groupedset=recomotheruser.where("song_id IN (select song_id from raters where mood_id=? and user_id=?)",params[:mood],current_user.id)
 
 f1=groupedset.select("user_id,mood_id,song_id,count(*) as total_count").group(:user_id).order("total_count DESC").first
@@ -66,6 +65,7 @@ popu=popu.take(10)
   def show
 	Popular.create(song_id: params[:id], count: 0)
     respond_with(@song)
+
   end
 
   def new
@@ -109,13 +109,26 @@ def listofsong
 
   def create
     @song = Song.new(song_params)
-    #songname = @song.name
-    #artistname = @song.artist.name
-    #find lyrics using python file pass args using command line
-    #read the text file 
-    #	@song.lyrics = "textfile read data"
-    # compute mood using python
-    #	@song.mood="mood"
+   songname = @song.name
+    artistname = @song.artist.artistname
+     #tatementa = params[:song][:artistname]
+     st1=artistname.gsub(" ","_")
+     
+    #tatementt =params[:song][:songname]
+     st2=songname.gsub(" ","_")
+    
+    `python3 crawl.py #{st1} #{st2}`
+ 
+   `python def.py`
+      file = File.open("result.txt", 'rb')                           
+	while !file.eof?
+		line1 = file.readline
+                
+		#line1=line.gsub(/\n/," ")
+	end
+   
+    
+    @song.mood_id=line1
     @song.save
     respond_with(@song)
   end

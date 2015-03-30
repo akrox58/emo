@@ -1,3 +1,4 @@
+import sys
 import urllib
 import re
 import lxml.html
@@ -61,8 +62,9 @@ class Song(object):
                 lyrics.append(node.tail)
         self.lyric =  "".join(lyrics).strip()    
         return self.lyric
- 
-song = Song(artist='taylor swift', title='love story')
+s1=sys.argv[1]
+s2=sys.argv[2]
+song = Song(artist=s1, title=s2)
 lyr = song.lyricwikia()
 print(lyr)
 

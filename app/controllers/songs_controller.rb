@@ -64,7 +64,14 @@ popu=popu.take(10)
 
   def show
 	Popular.create(song_id: params[:id], count: 0)
+  @text = File.read("word.txt") do  |f| 
+     f.each_line do  |line| 
+      @text = @text.to_s + '<br>'+line.to_s 
+      end 
+    end
+puts @text
     respond_with(@song)
+
   end
 
   def new
@@ -108,13 +115,26 @@ def listofsong
 
   def create
     @song = Song.new(song_params)
-    #songname = @song.name
-    #artistname = @song.artist.name
-    #find lyrics using python file pass args using command line
-    #read the text file 
-    #	@song.lyrics = "textfile read data"
-    # compute mood using python
-    #	@song.mood="mood"
+   songname = @song.name
+    artistname = @song.artist.artistname
+     #tatementa = params[:song][:artistname]
+     st1=artistname.gsub(" ","_")
+     
+    #tatementt =params[:song][:songname]
+     st2=songname.gsub(" ","_")
+    
+    `python3 crawl.py #{st1} #{st2}`
+ 
+   `python def.py`
+      file = File.open("result.txt", 'rb')                           
+	while !file.eof?
+		line1 = file.readline
+                
+		#line1=line.gsub(/\n/," ")
+	end
+   
+    
+    @song.mood_id=line1
     @song.save
     respond_with(@song)
   end

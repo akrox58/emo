@@ -1,19 +1,3 @@
-Skip to content
- This repository
-Explore
-Gist
-Blog
-Help
-@akrox58 akrox58
- 
- Unwatch 4
-  Star 1
-  Fork 1
-akrox58/emo
- branch: master  emo/def.py
-@aprimadaprimad 16 minutes ago final stage-1
-2 contributors @akrox58 @aprimad
-RawBlameHistory    267 lines (237 sloc)  5.371 kb
 import nltk,re, pprint,pattern.en
 from nltk.corpus import stopwords
 from pattern.en import singularize
@@ -234,15 +218,15 @@ def printingMood(mood):
 
 	smood=mood.index(max(mood))
 	if smood==0:
-		return 'Happy'
+		return '1'
 	if smood==1:
-		return 'Sad'
+		return '2'
 	if smood==2:
-		return 'Angry'
+		return '3'
 	if smood==3:
-		return 'Fear'
+		return '4'
 	if smood==4:
-		return 'Surprise'
+		return '5'
 
 
 text=open('word.txt','r')
@@ -265,7 +249,7 @@ for x in points:
 	zap.append(x)
 print zap
 if not zap:
-	result="Happy"
+	result=1
 
 else:
 
@@ -279,7 +263,4 @@ fh=open('result.txt', 'w')
 fh.write(str(result)+'\n')
 fh.close()
 
-
-Status API Training Shop Blog About
-© 2015 GitHub, Inc. Terms Privacy Security Contact
 
