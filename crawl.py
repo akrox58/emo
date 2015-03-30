@@ -10,13 +10,14 @@ class Song(object):
         self.artist = self.__format_str(artist)
         self.title = self.__format_str(title)
         self.url = None
+        self.url1=None
         self.lyric = None
 
     def __format_str(self, s):
-        # remove paranthesis and contents
+        
         s = s.strip()
         try:
-            # strip accent
+            
             s = ''.join(c for c in unicodedata.normalize('NFD', s)
                          if unicodedata.category(c) != 'Mn')
         except:
@@ -31,8 +32,11 @@ class Song(object):
         artist = self.__quote(self.artist)
         title = self.__quote(self.title)
         artist_title = '%s:%s' %(artist, title)
+        artist_title1='%s/%s.html' %(artist,title)
         url = 'http://lyrics.wikia.com/' + artist_title
+        url1='http://www.azlyrics.com/lyrics/'+artist_title1
         self.url = url
+        self.url1=url1
 
     def update(self, artist=None, title=None):
         if artist:
@@ -56,14 +60,13 @@ class Song(object):
             if node.tail is not None:
                 lyrics.append(node.tail)
         self.lyric =  "".join(lyrics).strip()    
-
         return self.lyric
-
-song = Song(artist='beyonce', title='halo')
+ 
+song = Song(artist='taylor swift', title='love story')
 lyr = song.lyricwikia()
 print(lyr)
 
-open('lyrics.txt', 'w').close()
-with open('lyrics.txt', 'wb') as fh:
+open('word.txt', 'w').close()
+with open('word.txt', 'wb') as fh:
     fh.write(bytes(lyr,'UTF-8'))
 

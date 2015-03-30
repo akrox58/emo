@@ -55,7 +55,7 @@ def ie_preprocess(document):
 				sentence.remove(word)
 				add.remove(add[-1])
 				add=''.join(add)
-				sentence.insert(prev,add)	
+				sentence.insert(prev,add)
 
 	sentences = [remove_stop(sent) for sent in sentences]
 #	sentences = [stem_func(sent) for sent in sentences]
@@ -71,7 +71,7 @@ def remove_stop(sent):
 #getting all verbs to its roots.
 def stem_func(v):
 
-	lancaster_stemmer = LancasterStemmer()	
+	lancaster_stemmer = LancasterStemmer()
         s=[]
 
         for word in v:
@@ -123,7 +123,7 @@ def add_mood(word,moodid,i,add):
 				value=moodr[moodf.index(word)]
 				i[moodid]=i[moodid]+add+value
 	return (moodid,i)
-	
+
 def award_points(sent):
 	i=[0,0,0,0,0]
 	cont=0
@@ -154,13 +154,13 @@ def award_points(sent):
 					continue
 				if word not in moods+neg:
 					continue
-	
+
 				if q==1:
 					q=0
 					add=1+add
-					
+
 			if word in neg or cont==1:
-				
+
 				if word in neg and cont==1:
 					cont=0
 					nega=1
@@ -174,13 +174,13 @@ def award_points(sent):
 					continue
 				cont=0
 				moodid=neg_points(word)
-				(moodid,i)=add_mood(word,moodid,i,2)		
+				(moodid,i)=add_mood(word,moodid,i,2)
 				add=0
 				nega=0
-				continue		
-			
-			elif word in moods:	
-				(moodid,i)=add_mood(word,-1,i,add)			
+				continue
+
+			elif word in moods:
+				(moodid,i)=add_mood(word,-1,i,add)
 			add=0
 	if nega==1 and sent and moodid==-1:
 		i[1]=i[1]+1
@@ -189,7 +189,7 @@ def award_points(sent):
 #Finding out the mood of each sentence
 def mood_persent(point):
 	return [point.index(max(point)),max(point)]
-		
+
 
 #Returning most frequent value:
 def Most_Common(lst):
@@ -211,7 +211,7 @@ def Most(point):
 				mood[3]+=point[i][1]
 			if point[i][0]==4:
 				mood[4]+=point[i][1]
-	print mood	
+	print mood
 	return mood
 #Printing mood detected
 def printingMood(mood):
@@ -252,13 +252,13 @@ if not zap:
 	result="Happy"
 
 else:
-	
+
 	point=[mood_persent(point) for point in zap]
 	print point
 	mood=Most(point)
 	print mood
 	result=printingMood(mood)
-
+print result
 fh=open('result.txt', 'w')
 fh.write(str(result)+'\n')
 fh.close()
