@@ -258,7 +258,7 @@ else:
 	mood=Most(point)
 	print mood
 	result=printingMood(mood)
-
+	print result
 fh=open('result.txt', 'w')
 fh.write(str(result)+'\n')
 fh.close()
