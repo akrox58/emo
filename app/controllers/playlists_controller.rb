@@ -9,11 +9,9 @@ class PlaylistsController < ApplicationController
   end
 
   def show
-
-  @raters=Rater.where(:mood_id=>@playlist.mood , :user_id => current_user.id, :play => 1)
-    respond_with(@playlist,@rater) 
-
- 
+     
+   @raters=Rater.where(:mood_id=>@playlist.mood , :user_id => current_user.id, :play => 1)
+    respond_with(@playlist,@rater)
   end
 
   def new
@@ -49,7 +47,7 @@ class PlaylistsController < ApplicationController
     def playlist_params
 statement = params[:playlist][:name]
     	
-	`python testemo.py #{statement}`
+	`python rosh.py #{statement}`
 
 	file = File.open("finish.txt", 'rb')                           #execute python code here and get the value into finish.txt
 	while !file.eof?
@@ -60,7 +58,7 @@ statement = params[:playlist][:name]
 	params = ActionController::Parameters.new({
 playlist: {
 name: statement, 
-mood_id:line,
+mood_id: line,
 user_id: current_user.id
 }
 })
