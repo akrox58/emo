@@ -9,9 +9,32 @@ class PlaylistsController < ApplicationController
   end
 
   def show
-     
-   @raters=Rater.where(:mood_id=>@playlist.mood , :user_id => current_user.id, :play => 1)
+
+  popu=Rater.where("song_id IN (select song_id from populars order by count desc limit 10) and user_id=?",@playlist.user_id)
+   
+
+@moods=Mood.all
+recom=Rater.where.not(:user_id => current_user.id)
+
+recomuser=Rater.where("mood_id<>? and user_id=?",@playlist.mood,current_user.id)
+
+recom2=recom.where(mood_id:  @playlist.mood)
+
+set=recom2.where("song_id IN (select song_id from raters where mood_id=? and user_id=?)",@playlist.mood,current_user.id)
+
+@f2=set.select("user_id,mood_id,song_id,count(*) as total_count").group(:user_id).order("total_count DESC").limit(3)
+u1=@f2.offset(1).first
+u2=@f2.offset(2).first
+u3=@f2.offset(3).first
+reccomending=recomuser.where("song_id IN (select song_id from raters where mood_id=? and user_id IN (?,?,?))", @playlist.mood,u1.user_id,u2.user_id,u3.user_id)
+
+
+   raters=Rater.where(:mood_id=>@playlist.mood , :user_id => current_user.id)
+   pop=raters.order(count: :desc,search: :desc).take(10)
+
+@rec = pop | reccomending | popu
     respond_with(@playlist,@rater)
+ 
   end
 
   def new
@@ -44,7 +67,7 @@ class PlaylistsController < ApplicationController
       @playlist = Playlist.find(params[:id])
     end
 
-    def playlist_params
+     def playlist_params
 statement = params[:playlist][:name]
     	
 	`python rosh.py #{statement}`
